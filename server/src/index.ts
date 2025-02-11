@@ -1,7 +1,8 @@
 // hello#00@db
 import { Hono } from "hono";
-import { databaseConnection } from "./database";
 import { cors } from "hono/cors";
+import { supabaseConnection } from "./database";
+
 const app = new Hono().basePath("api/v1");
 
 app.use(
@@ -13,12 +14,9 @@ app.use(
   })
 );
 
-databaseConnection()
-  .then(() => {
-    console.log(`⚙️ Server is running at port : 3000`);
-  })
-  .catch((err) => {
-    console.log("Supabase connection failed !!! ", err);
-  });
+// supabase connection fire
+supabaseConnection().then(() => {
+  console.log(`⚙️ Server is running on 3000`);
+});
 
 export { app };
