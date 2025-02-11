@@ -1,0 +1,14 @@
+{
+  "name": "server",
+  "scripts": {
+    "dev": "bun run --hot src/index.ts"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.48.1",
+    "hono": "^4.6.20",
+    "server": "file:"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
