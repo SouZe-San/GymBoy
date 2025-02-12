@@ -32,3 +32,4 @@ server/.env
 .env.local
 dist/
 
+client/src/stores
