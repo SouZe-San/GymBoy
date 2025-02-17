@@ -31,5 +31,3 @@ server/.env
 .env.production.local
 .env.local
 dist/
-
-client/src/stores

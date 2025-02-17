@@ -1,23 +1,26 @@
 /* color palette from <https://github.com/vuejs/theme> */
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap");
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
+
   --vt-c-white: #ffffff;
   --vt-c-white-soft: #f8f8f8;
   --vt-c-white-mute: #f2f2f2;
 
-  --vt-c-black: #181818;
+  --vt-c-black: #0c0c0c;
   --vt-c-black-soft: #222222;
   --vt-c-black-mute: #282828;
 
   --vt-c-indigo: #2c3e50;
 
-  --vt-c-divider-light-1: rgba(60, 60, 60, 0.29);
-  --vt-c-divider-light-2: rgba(60, 60, 60, 0.12);
-  --vt-c-divider-dark-1: rgba(84, 84, 84, 0.65);
-  --vt-c-divider-dark-2: rgba(84, 84, 84, 0.48);
+  --vt-c-divider-light-1: rgba(27, 27, 27, 0.657);
+  --vt-c-divider-light-2: rgba(23, 23, 23, 0.88);
+  --vt-c-divider-dark-1: rgba(255, 255, 255, 0.65);
+  --vt-c-divider-dark-2: rgba(253, 253, 253, 0.48);
 
   --vt-c-text-light-1: var(--vt-c-indigo);
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
@@ -37,7 +40,13 @@
   --color-heading: var(--vt-c-text-light-1);
   --color-text: var(--vt-c-text-light-1);
 
+  --nav-btn-bg: var(--vt-c-black);
   --section-gap: 160px;
+  --nav-height: 5rem;
+
+  --text-color: var(--vt-c-black);
+
+  --svg-bg-color: #e4e3e3;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -49,11 +58,17 @@
     --color-border: var(--vt-c-divider-dark-2);
     --color-border-hover: var(--vt-c-divider-dark-1);
 
+    --nav-btn-bg: var(--vt-c-white);
+
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-2);
+
+    --text-color: var(var(--vt-c-white));
+    --svg-bg-color: #474747;
   }
 }
 
+/* 020d19   0c0c0c 0b1215 */
 *,
 *::before,
 *::after {
@@ -69,6 +84,8 @@ html {
 
 body {
   min-height: 100vh;
+  font-family: "Raleway", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-optical-sizing: auto;
   color: var(--color-text);
   background: var(--color-background);
   transition: color 0.5s, background-color 0.5s;
