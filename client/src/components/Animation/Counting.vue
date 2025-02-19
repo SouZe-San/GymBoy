@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { motion  as m} from 'motion-v';
-import { ref, onMounted, computed, watchEffect, watch } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 const props = defineProps<{
   targetNumber: number
@@ -56,27 +56,16 @@ const animateToNumber = () => {
   requestAnimationFrame(updateNumber)
 }
 
-// watchEffect(()=>{
-//     if (props.inView) {
-//         console.log('in view');
-//         animateToNumber()
-//     }
-// })
 
-
-// Watch for changes in `inView` prop
 watch(() => props.inView, (newVal) => {
   if (newVal) {
-    // Reset the current number and animation state
-    // currentNumber.value = 0; // Reset to 0 before starting the animation
-    // isAnimating.value = false; // Reset animation state
     animateToNumber(); // Start the animation
   }
 });
 </script>
 
 <template>
-  <!-- <div class="counter-container"> -->
+ 
     <div class="counter-wrapper">
       <span v-if="prefix" class="affix">{{ prefix }}</span>
       <div class="digits-container">
@@ -101,9 +90,6 @@ watch(() => props.inView, (newVal) => {
               ease: [0.4, 0, 0.2, 1]
             }"
           >
-            <!-- :style="{
-              transform: `translateY(${-digit * 10}%)`
-            }" -->
             <div 
               v-for="num in generateNumbers()"
               :key="num"
@@ -116,7 +102,6 @@ watch(() => props.inView, (newVal) => {
       </div>
       <span v-if="suffix" class="affix">{{ suffix }}</span>
     </div>
-  <!-- </div> -->
 </template>
 
 <style scoped>
@@ -137,14 +122,8 @@ watch(() => props.inView, (newVal) => {
   position: relative;
  width: 2.3rem;
   height: 6rem;
-  /* background: linear-gradient(to bottom,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(240, 240, 240, 1) 100%); */
   border-radius: 0.5rem;
   overflow: hidden;
-  /* box-shadow: 
-    inset 0 0 10px rgba(0, 0, 0, 0.1),
-    0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .digit-track {
@@ -160,10 +139,8 @@ watch(() => props.inView, (newVal) => {
   align-items: center;
   justify-content: center;
   height: inherit;
- font-size: 4rem;
-font-family: "TT_hover-regular";
-  /* font-weight: 700; */
-  /* color: #1a1a1a; */
+  font-size: 4rem;
+  font-family: "TT_hover-regular";
   color: currentColor;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 }

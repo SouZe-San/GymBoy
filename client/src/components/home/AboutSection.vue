@@ -52,7 +52,6 @@
                     
                      <div class="mini-box-inside blob-box">
                         
-                            900+ 
                             <Counting :in-view="isInView" :target-number="100" :duration="50"  suffix="+"/>
                         
                         <p>
@@ -63,10 +62,13 @@
                 <div class="mini-box box">
                     <div class="icon"> <GraphIcon/> </div>
                      <div class="mini-box-inside blob-box" > 
-                        <h5>
+                       
                             <Counting :in-view="isInView" :target-number="90" :duration="50"  suffix="%"/>
-                        </h5>
+                    
+                        <p>
                         Success Rate
+                       </p>
+
                      </div>
 
                 </div>
@@ -108,7 +110,6 @@ const isInView = useInView(secRef)
 onMounted(() => {
     const section = document.getElementById('about')
     section!.addEventListener('mousemove', updateCursor)
-    // window.addEventListener('mousemove', updateCursor)
     boxes.value = Array.from(document.querySelectorAll('.blob-box'))
 })
 
@@ -186,8 +187,6 @@ onMounted(() => {
     aside{
         display: flex;
         flex-direction: column;
-        /* justify-content: space-between;
-        align-items: center; */
         height: 100%;
         width: 48%;
         .box{
@@ -267,9 +266,6 @@ onMounted(() => {
 
            p{
             font-size: .8rem;
-            /* line-height: 1.5;
-            margin: 1rem 0; */
-
             text-align: end;
             font-family: "TT_hover-regular",serif;
            }
@@ -294,13 +290,10 @@ onMounted(() => {
                
                 border-radius: 1rem;
                 margin: 1rem 0;
-                background: none;
-                /* mask-image: url("../../assets/icon/boxSvg.svg"); */
-               
+                background: none;              
                 display: flex;
                 position: relative;
                 padding: 0;
-
                 cursor: pointer;
 
 
@@ -318,7 +311,8 @@ onMounted(() => {
                     border-radius: 50%;
                     background: #5DE9F8;
                     transition: all 0.3s ;
-                        svg{
+                        
+                    svg{
                             stroke: white;
                             transition:transform 0.4s ease-in-out, stroke .3s ease-in-out;
                         }
@@ -333,7 +327,6 @@ onMounted(() => {
 
                     display: flex;
                     flex-direction: column;
-                    /* align-items: flex-end; */
                     justify-content: flex-end;
 
                     p{
@@ -345,7 +338,6 @@ onMounted(() => {
                     .icon{
                         background: #ffffff;
                         svg{
-                            /* stroke: black; */
                             transform: scale(.8);
                             stroke: #000000;
                         }

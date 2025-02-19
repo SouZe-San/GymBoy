@@ -169,22 +169,20 @@ aside:nth-child(2){
     cursor: pointer;
 
     .icon-item{
-       width: 40px;
+        width: 40px;
         aspect-ratio: 1;
-      border: 1.3px solid ;
-      border-radius: 3rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 5px;
-        /* color: rgb(255, 255, 2); */
+        border: 1.3px solid ;
+        border-radius: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
         color: rgb(0, 0, 0);
         opacity: 0.8;
         transition: all 0.3s ease;
         svg{
             width: 2em;
         }
-
         &:hover{
             opacity: 1;
             border-color:rgba(143, 143, 143, 0.68) ;
@@ -208,10 +206,9 @@ aside:nth-child(2){
         font-size: 4.5rem;
         font-weight: 800;
         line-height: 1.3;
-        /* font-family: "CosiAzure", sans-serif; */
-        font-family: "Mogen", sans-serif;
         
-        /* font-family: "TT_hover-mid", sans-serif; */
+        font-family: "Mogen", sans-serif;
+
     }
     .hero-btn{
        padding: 1.1rem 3.3rem;
@@ -287,11 +284,9 @@ aside:nth-child(2){
       left: 22%;
         
         display: flex;
-        /* justify-content: center; */
         align-items: flex-end;
         gap: 1rem;
-       
-        /* font-family: "TT_hover-regular"; */
+
         font-size: 1.05rem;
         
 

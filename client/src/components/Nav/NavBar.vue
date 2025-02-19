@@ -9,10 +9,6 @@
         Sign Up
       </p>
     </div>
-     <!-- <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/auth" >About</RouterLink>
-      </nav> -->
       <NavPanel :is-open="isOpen"/>
 
       <div class="menu-button nav-btn" :style="{borderColor:colorObj.bg, color:colorObj.bg}"
@@ -146,10 +142,8 @@ header {
 }
 
 .menu-button{
-  /* padding: 0.2rem 1.1rem; */
   cursor: pointer;
   position: relative;
-  /* width: 9rem; */
   padding: 0.7rem 1.4rem;
   width: 10rem;
   z-index: 100;
