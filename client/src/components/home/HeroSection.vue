@@ -16,19 +16,12 @@ import HeartIcon from '../icon/HeartIcon.vue';
 
 
 
-import { ref } from 'vue';
 import OverlapCircle from '../OverlapCircle.vue';
 import { useThemeStore } from '@/stores/theme'
 
-// const isDark = ref<boolean>(window.matchMedia('(prefers-color-scheme: dark)').matches);
+
 const imgArray_for_mid = [img2,img3,img0]
-const imgArray_for_small = [img2,img1,img4]
-
-// const onClick =(e:MouseEvent)=>{
-//     console.log('clicked',isDark.value)
-
-//     isDark.value = !isDark.value;
-// }
+const imgArray_for_small = [img2,img4,img1]
 
 const themeStore = useThemeStore()
 

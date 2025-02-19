@@ -20,6 +20,10 @@
   font-family: "TT_hover-regular";
   src: url("fonts/TT_Hoves_Regular.ttf") format("truetype");
 }
+@font-face {
+  font-family: "TT_hover-light";
+  src: url("fonts/TT_Hoves_Light.ttf") format("truetype");
+}
 
 @font-face {
   font-family: "TT_hover-mid";
@@ -95,5 +99,5 @@ svg .hero-bg-svg-path {
 }
 
 .under-section {
-  margin-top: 5rem;
+  margin: 5rem 0;
 }

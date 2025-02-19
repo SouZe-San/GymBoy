@@ -70,15 +70,14 @@ window.addEventListener('scroll', () => {
 
 
 watchEffect(()=>{
-  
-  if(!themeStore.isDark){
+
     if(isOpen.value){
     document.body.style.overflow = "hidden";
   }
   else{
     document.body.style.overflow = "auto";
   }
-  }
+
 })
 
   
