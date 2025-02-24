@@ -45,7 +45,7 @@
   --nav-height: 5rem;
 
   --text-color: var(--vt-c-black);
-
+  --color-highLight: #ee2324;
   --svg-bg-color: #e4e3e3;
 }
 
@@ -65,6 +65,7 @@
 
     --text-color: var(var(--vt-c-white));
     --svg-bg-color: #474747;
+    --color-highLight0: #fa1e1e;
   }
 }
 

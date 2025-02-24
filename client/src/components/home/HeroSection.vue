@@ -293,7 +293,8 @@ aside:nth-child(2){
         .logo{
          width: 7rem;
          aspect-ratio: 1;
-            background: #5DE9F8;
+            background: var(--color-highLight);
+            /* background: #5DE9F8; */
             border-radius: 2rem;
             display: flex;
             justify-content: center;

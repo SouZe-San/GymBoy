@@ -22,6 +22,10 @@
 svg{
    transition: all 0.3s ease;
 
+   circle{
+      fill: var(--color-highLight);
+   }
+
    g, g path{
       transition: all 0.3s ease;
    }

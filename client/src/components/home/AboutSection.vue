@@ -147,7 +147,7 @@ onMounted(() => {
     cursor: pointer;
     
     &:hover {
-        border: 1px solid #5de9f877 ;
+        border: 1px solid #c6c6c655 ;
     }
 
     
@@ -169,7 +169,8 @@ onMounted(() => {
   height: 0px;
   background: transparent;
   transition: opacity 0.3s ease-in-out,transform 0.3s ;
-  box-shadow: 0 0 180px 50px #5DE9F8;
+  box-shadow: 0 0 180px 50px #840202;
+  /* box-shadow: 0 0 180px 50px #5DE9F8; */
   
   left: var(--mouse-x);
   top: var(--mouse-y);
@@ -309,7 +310,8 @@ onMounted(() => {
                     width: 5rem;
                     aspect-ratio: 1;
                     border-radius: 50%;
-                    background: #5DE9F8;
+                    background: var(--color-highLight);
+                    /* background: #5DE9F8; */
                     transition: all 0.3s ;
                         
                     svg{
@@ -351,8 +353,14 @@ onMounted(() => {
 @media(prefers-color-scheme:dark){
     .blob-box{
        background: #6f6e6e1a;
-    border: 1px solid #61616130;
+        border: 1px solid #61616130;
+
+
+        &::after{
+            box-shadow: 0 0 180px 50px #c6c6c6;
+        }
     }
+    
 
     .about-section{
         aside{
