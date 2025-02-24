@@ -10,12 +10,6 @@
   src: url("fonts/CosiAzure-Bold.ttf") format("truetype");
 }
 
-/* Small fonts - handwriting style  */
-@font-face {
-  font-family: "Redressed";
-  src: url("fonts/Redressed.ttf") format("truetype");
-}
-
 @font-face {
   font-family: "TT_hover-regular";
   src: url("fonts/TT_Hoves_Regular.ttf") format("truetype");

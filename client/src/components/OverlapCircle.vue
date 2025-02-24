@@ -34,8 +34,6 @@
     .circle-container .img-circle{
         aspect-ratio: 1;
         border-radius: 50%;
-        /* background: #5DE9F8; */
-        /* border: 1px solid; */
         overflow: hidden;
         img{
             width: 100%;
