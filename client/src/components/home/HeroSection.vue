@@ -50,12 +50,9 @@ const themeStore = useThemeStore()
         </div>
 
         <div class="tagLine-container">
-            <!-- Guiding You to Fitness Excellence -->
             <h4>Your Blueprint for Fitness Triumph.</h4>
         <div class="headline-box">
 
-            <!-- "Elevate Your Fitness Journey Together" -->
-             <!-- "Unleash Your Potential, Together" -->
             <h1>
                 Empowering
             </h1>
@@ -294,7 +291,6 @@ aside:nth-child(2){
          width: 7rem;
          aspect-ratio: 1;
             background: var(--color-highLight);
-            /* background: #5DE9F8; */
             border-radius: 2rem;
             display: flex;
             justify-content: center;
@@ -308,7 +304,6 @@ aside:nth-child(2){
             line-height: 1.5;
             font-weight: 500;
           letter-spacing: 1px;
-            /* font-family: "TT_hover-regular"; */
         }
     }
 

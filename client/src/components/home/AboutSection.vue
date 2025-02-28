@@ -118,28 +118,10 @@ onMounted(() => {
 
 <style scoped>
 
-.cursor-dot {
-  width: 250px;
-  height: 250px;
-  background: radial-gradient(circle, 
-    rgba(255, 255, 255, 0.8) 0%,
-    rgba(255, 255, 255, 0.2) 40%,
-    transparent 70%
-  );
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  
-  filter: blur(20px);
-}
-
 .blob-box{
     position: relative;
     padding: 1rem;
     background:rgba(136, 136, 136, 0.08);
-    /* background: rgba(142, 142, 142, 0.192); */
     border: 1px solid #57575716;
     overflow: hidden;
     transition: border 0.27s ease-in-out;
@@ -170,8 +152,6 @@ onMounted(() => {
   background: transparent;
   transition: opacity 0.3s ease-in-out,transform 0.3s ;
   box-shadow: 0 0 180px 50px #840202;
-  /* box-shadow: 0 0 180px 50px #5DE9F8; */
-  
   left: var(--mouse-x);
   top: var(--mouse-y);
 
@@ -198,7 +178,6 @@ onMounted(() => {
             margin: 1rem 0;
         }
         .image-box{
-            /* aspect-ratio: 16/9; */
             overflow: hidden;
             border: none;
             border-radius: 3rem;
