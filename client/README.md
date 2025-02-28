@@ -1,10 +1,6 @@
-# gymboy
+# Gymboy
 
 This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
 ## Type Support for `.vue` Imports in TS
 
@@ -16,7 +12,7 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 
 ## Project Setup
 
-```sh
+```bash
 pnpm install
 ```
 
@@ -37,3 +33,9 @@ pnpm build
 ```sh
 pnpm lint
 ```
+
+  <img src="../.github/img/dark-hero.png" alt="GYM Management System" align="center">
+
+#
+
+  <img src="../.github/img/testi.png" alt="GYM Management System" align="center">
