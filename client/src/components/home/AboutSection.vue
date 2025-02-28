@@ -183,6 +183,7 @@ onMounted(() => {
     justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
+    height: 100vh;
 
     
     aside{

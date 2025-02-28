@@ -212,8 +212,9 @@ const handleMouseLeave = ()=> {
     position: relative;
     overflow: hidden;
     transition: scale 0.3s ease-in-out;
-    box-shadow: 0px 4px 18px -11px rgba(0, 0, 0, 0.47);
-    background: rgba(136, 136, 136, 0.05);
+    /* box-shadow: 0px 4px 18px -11px rgba(0, 0, 0, 0.47); */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    /* background: rgba(136, 136, 136, 0.05); */
 
     .insider {
         flex: 1;
@@ -301,15 +302,18 @@ const handleMouseLeave = ()=> {
 
 @media (prefers-color-scheme: dark) {
     .main-box {
-        box-shadow: 0px 4px 18px -11px rgba(232, 232, 232, 0.287);
+        /* box-shadow: 0px 4px 18px -11px rgba(232, 232, 232, 0.287); */
+        box-shadow:none;
         background:none;
     }
 }
 @media (prefers-color-scheme: light) {
     .center-div{
-        
-    background: var(----svg-bg-color);
-    border-color: #21212137;
+    background: rgba(158, 158, 158, 0.05);
+    backdrop-filter: blur(4rem);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+    border-color: #76767617;
         h1{
             color: #000000;
         }
