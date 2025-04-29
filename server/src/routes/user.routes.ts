@@ -3,10 +3,25 @@ import { Context, HonoRequest } from "hono";
 import { ApiError } from "../utils/ApiError";
 import { resStatus } from "../utils/responseStatus";
 import { supabase } from "../database";
-import { hash } from "bcrypt";
 import { generateAccessToken, isPasswordValid } from "../utils/login.utils";
-
+import { deleteCookie, setSignedCookie } from "hono/cookie";
 const app = new Hono();
+
+const cookieOptions: {
+  path: string;
+  secure: boolean;
+  maxAge: number;
+  httpOnly: boolean;
+  domain?: string;
+  sameSite?: "Strict" | "Lax" | "None" | "strict" | "lax" | "none" | undefined;
+} = {
+  path: "/",
+  secure: false, // Set to true if using HTTPS
+  maxAge: 60 * 60 * 24 * 5, // 5 days
+  httpOnly: true,
+  // domain: "localhost",
+  sameSite: "Strict",
+};
 
 //! registration
 app.post("/registration", async (c: Context) => {
@@ -38,7 +53,9 @@ app.post("/registration", async (c: Context) => {
       throw new ApiError(500, "Error Throwing from registration at Data fetching");
     }
 
-    const hasPassword = await hash(password, 10);
+    const hasPassword = await Bun.password.hash(password, {
+      algorithm: "bcrypt",
+    });
 
     // create a new user
     let { data, error: insert_error } = await supabase
@@ -108,11 +125,19 @@ app.post("/login", async (c: Context) => {
 
   // check if the password is valid
   const user = users[0];
-  if (await isPasswordValid(password, user.password)) {
+  if (!(await isPasswordValid(password, user.password))) {
     return c.body("Invalid Password", 400);
   }
 
   const accessToken = await generateAccessToken(user);
+
+  setSignedCookie(
+    c,
+    "auth_token",
+    accessToken,
+    process.env.COOKIE_SECRET ?? "this is what",
+    cookieOptions
+  );
 
   // send the response as success
   c.status(200);
@@ -226,7 +251,11 @@ app.post("/logout", async (c: Context) => {
   if (!users || users.length === 0) {
     return c.body("User not found", resStatus.NotFound);
   }
-
+  deleteCookie(c, "auth_token", {
+    path: "/",
+    secure: false,
+    domain: "localhost",
+  });
   // send the response as success
   c.status(200);
   return c.json({ massage: "Logout Successful" });
