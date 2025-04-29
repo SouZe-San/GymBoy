@@ -4,6 +4,11 @@ import { ApiError } from "../utils/ApiError";
 import { resStatus } from "../utils/responseStatus";
 import { supabase } from "../database";
 const app = new Hono();
+import authMiddleware from "../middlewares/auth.middleware";
+app.get("/", authMiddleware, async (c: Context) => {
+  const user = c.get("user");
+  return c.body("Hello from Admin - " + user.email);
+});
 
 //! update_memberShip (Add Member)
 app.patch("/create", async (c: Context) => {
