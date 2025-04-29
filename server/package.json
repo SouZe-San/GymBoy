@@ -5,9 +5,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.48.1",
-    "bcrypt": "^5.1.1",
-    "hono": "^4.6.20",
-    "server": "file:"
+    "hono": "^4.6.20"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
