@@ -202,7 +202,7 @@ app.post("/createBill", async (c: Context) => {
   }
 });
 
-// Assign Fee Package
+//! Assign Fee Package
 app.patch("/assignFeePackage", async (c: Context) => {
   // get the data from the request body
   const { user_id, package_name } = await c.req.json();
@@ -271,7 +271,8 @@ app.patch("/assignFeePackage", async (c: Context) => {
     return c.body("Something went Wrong in Server", 500);
   }
 });
-// Assign Notification for monthly
+
+//! Assign Notification for monthly
 app.post("/sendNotification:id", async (c: Context) => {
   const id = c.req.param("id");
   try {
