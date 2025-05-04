@@ -3,10 +3,12 @@
     <div class="auth-button nav-btn" style="position: relative; gap: 3rem;">
       <span></span>
       <p>
-        Log In
+        <RouterLink to="/auth?type=login" style="text-decoration: none; color: inherit;">
+        Log In</RouterLink>
       </p>
       <p class="hightLightText">
-        Sign Up
+         <RouterLink to="/auth?type=register" style="text-decoration: none; color: inherit;">
+        Sign Up</RouterLink>
       </p>
     </div>
       <NavPanel :is-open="isOpen"/>
@@ -29,6 +31,7 @@ import { ref, watchEffect,watch } from 'vue';
 import MenuIcon from '../icon/MenuIcon.vue';
 import NavPanel from './NavPanel.vue';
 import { useThemeStore } from '@/stores/theme';
+import { useRouter,RouterLink } from 'vue-router';
 
 
 const isOpen = ref(false)
@@ -44,23 +47,32 @@ const colorObj = ref<{bg:string;color:string}>({
   bg:"#ffffff",
   color:"#0c0c0c"
 })
+const router = useRouter()
 
 
+const path = router.currentRoute.value.path
 watchEffect(()=>{
-  
-  
-if(!themeStore.isDark){
-window.addEventListener('scroll', () => {
-   if ( window.scrollY >= (window.innerHeight - 20)) {
-      console.log('Crossed');
-      colorObj.value.bg = "#0c0c0c";
-      colorObj.value.color = "#ffffff";
-      }
-      else{
-        colorObj.value.bg = "#ffffff";
-        colorObj.value.color = "#0c0c0c";
-      }
-}); 
+  if(!themeStore.isDark){
+
+  if(path === "/"){
+
+      window.addEventListener('scroll', () => {
+            if ( window.scrollY >= (window.innerHeight - 20)) {
+              
+                colorObj.value.bg = "#0c0c0c";
+                colorObj.value.color = "#ffffff";
+                }
+                else{
+                  colorObj.value.bg = "#ffffff";
+                  colorObj.value.color = "#0c0c0c";
+                }
+          }); 
+    }
+  else{
+    colorObj.value.bg = "#0c0c0c";
+    colorObj.value.color = "#ffffff";
+  }
+
 }
 })
 

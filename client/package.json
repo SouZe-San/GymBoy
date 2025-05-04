@@ -12,6 +12,7 @@
     "lint": "eslint . --fix"
   },
   "dependencies": {
+    "lucide-vue-next": "^0.503.0",
     "motion-v": "0.10.0-beta.1",
     "pinia": "^2.3.1",
     "vue": "^3.5.13",

@@ -67,7 +67,8 @@ section {
   height: auto;
 }
 
-main {
+main,
+.dashboard-section {
   padding-top: var(--nav-height);
 }
 
