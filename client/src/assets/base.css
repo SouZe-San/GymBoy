@@ -39,11 +39,12 @@
 
   --color-heading: var(--vt-c-text-light-1);
   --color-text: var(--vt-c-text-light-1);
+   --muted-foreground: 215.4 16.3% 46.9%;
 
   --nav-btn-bg: var(--vt-c-black);
   --section-gap: 160px;
   --nav-height: 5rem;
-
+  --sidenav-bg:rgba(238, 235, 235, 0.65)
   --text-color: var(--vt-c-black);
   --color-highLight: #ee2324;
   --svg-bg-color: #e4e3e3;
@@ -57,9 +58,10 @@
 
     --color-border: var(--vt-c-divider-dark-2);
     --color-border-hover: var(--vt-c-divider-dark-1);
-
+ --muted-foreground: 215 20.2% 65.1%;
     --nav-btn-bg: var(--vt-c-white);
-
+    --sidenav-bg:: rgba(189, 189, 189, 0.04);
+    /* --sidenav-bg:rgba(34, 34, 36, 0.65); */
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-2);
 

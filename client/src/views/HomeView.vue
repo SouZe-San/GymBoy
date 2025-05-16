@@ -5,10 +5,11 @@ import FacilitiesSection from '@/components/home/FacilitiesSection.vue';
 import HeroSection from '@/components/home/HeroSection.vue';
 import ScheduleSection from '@/components/home/ScheduleSection.vue';
 import TestimonialSection from '@/components/home/TestimonialSection.vue';
-
+import NavBar from '@/components/Nav/NavBar.vue';
         
 </script>
 <template>
+    <NavBar/>
     <main style="padding-top:1rem;">
         <HeroSection/>
         <AboutSection/>
