@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router';
+
 defineProps<{
   isOpen:boolean;
 }>()
@@ -12,10 +14,10 @@ defineProps<{
   >
     <nav>
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="#about">WorkOut</a></li>
-        <li><a href="#services">Programs</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><RouterLink to="/">Home</RouterLink></li>
+        <li><RouterLink to="/dashboard">WorkOut</RouterLink></li>
+        <li><RouterLink to="/#services">Programs</RouterLink></li>
+        <li><RouterLink to="/#contact">Contact</RouterLink></li>
       </ul>
     </nav>
 </div>

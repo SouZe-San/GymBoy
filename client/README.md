@@ -39,3 +39,9 @@ pnpm lint
 #
 
   <img src="../.github/img/testi.png" alt="GYM Management System" align="center">
+
+---
+
+### Admin Dashboard
+
+  <img src="../.github/img/admin-dashboard.png" alt="GYM Management System" align="center">

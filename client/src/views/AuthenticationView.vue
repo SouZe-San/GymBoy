@@ -1,4 +1,5 @@
 <template>
+    <NavBar/>
     <main>
      
             <component :is="authType === 'login' ? LoginView : SignupView" />
@@ -13,7 +14,7 @@ import { computed } from 'vue';
 import { useRoute } from 'vue-router'
 import LoginView from '@/components/auth/LoginView.vue';
 import SignupView from '@/components/auth/SignupView.vue';
-
+import NavBar from '@/components/Nav/NavBar.vue';
 
 
 const route = useRoute()
