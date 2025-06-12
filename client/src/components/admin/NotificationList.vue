@@ -1,6 +1,6 @@
 <template >
     <div class="overflow-x-auto card_bg">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 3rem;">
         <div>
           <h1 class="card-title">
             Recent Announcement

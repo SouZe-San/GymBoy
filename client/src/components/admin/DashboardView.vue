@@ -35,12 +35,18 @@
         />
         </div>
 
+        <div style="display: flex; gap: 1rem; width: 100%; margin-bottom: 2rem;">
+          <MemberView style="flex: 1;"/>
+          <MemberView style="flex:1"/>
+        </div>
+
         <NotificationList/>
     </section>
 </template>
 
 <script setup lang="ts">
 import NotificationList from './NotificationList.vue';
+import MemberView from './members/MemberView.vue';
 import { 
   Users,
   FileText

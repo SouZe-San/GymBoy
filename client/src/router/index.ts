@@ -28,6 +28,14 @@ const router = createRouter({
           path: "members",
           component: () => import("@/components/admin/AllMembersView.vue"),
         },
+        {
+          path: "bills",
+          component: () => import("@/views/admin/PaymentsView.vue"),
+        },
+        {
+          path: "announcements",
+          component: () => import("@/views/admin/AnnouncementView.vue"),
+        },
       ],
     },
   ],

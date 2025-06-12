@@ -102,7 +102,7 @@ interface NavItem {
     {
       icon: FileText,
       label: 'Payments',
-      href: '/dashboard/payments',
+      href: '/dashboard/bills',
     },
     {
       icon: Mail,
