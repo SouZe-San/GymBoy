@@ -26,11 +26,14 @@ section.dashboard-section{
     display: flex;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
 }
 main{
    padding-top: calc(var(--nav-height) - 2rem);
     flex-grow: 1;
     margin-left: 16rem;
+    overflow-y: scroll;
+    
     /* backdrop-filter: bl; */
    &::before{
     content: "";
@@ -52,5 +55,8 @@ main{
     box-shadow: 0 0 55px 56px rgba(202, 42, 6, 0.508);
    }
 }
-
+section.inDashboard{
+width: 100%;
+padding: 0 2rem;
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <section class="inDashboard">
 Yha Sab Milaga !!!!! 
-    </div>
+    </section>
 </template>
 
 <script setup lang="ts">

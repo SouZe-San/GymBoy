@@ -1,13 +1,20 @@
 <template>
-    <main>
+    <section class="inDashboard">
         <h1>
             All Members X0m
         </h1>
-    </main>
+
+        <MemberWithUpdate />
+        <MemberWithUpdate />
+        <MemberWithUpdate />
+        <MemberWithUpdate />
+        <MemberWithUpdate />
+        <MemberWithUpdate />
+    </section>
 </template>
 
 <script setup lang="ts">
-
+import MemberWithUpdate from './members/MemberWithUpdate.vue';
 </script>
 
 <style scoped>

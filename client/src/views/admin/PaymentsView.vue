@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <section class="inDashboard">
 Sab ka Udhar hai Yha !!!1
-    </div>
+    </section>
 </template>
 
 <script setup lang="ts">
