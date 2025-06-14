@@ -34,9 +34,7 @@ import MemberItem from './MemberItem.vue';
     background: var(--color-highLight);
     border-color: #ff2104;
     padding: 0.5rem 1rem;
-    /* border-radius: 0.375rem; */
     font-weight: 500;
-    /* font-size: 1rem; */
     cursor: pointer;
     display: flex;
     align-items: center;

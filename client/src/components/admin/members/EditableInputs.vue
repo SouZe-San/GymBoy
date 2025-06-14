@@ -1,7 +1,27 @@
 <template>
   <div :class="className" >
     <component
-      v-if="editing"
+      v-if="editing && type === 'select'"
+      :is="'select'"
+      ref="inputRef"
+      :value="selectedPackage"
+      @change="handleSelectInput"
+      @blur="handleBlur"
+      :class="inputClassName"
+    >
+      <!-- <slot name="options"></slot> -->
+   <template v-if="packageDisplay">
+     <option value="Premium" :selected="selectedPackage === 'Premium'">Premium</option>
+    <option value="Elite" :selected="selectedPackage === 'Elite'">Elite</option>
+    <option value="Basic" :selected="selectedPackage === 'Basic'">Basic</option>
+   </template>
+   <template v-else>
+     <option value="Pending" :selected="selectedPackage === 'Pending'">Pending</option>
+    <option value="Clear" :selected="selectedPackage === 'Clear'">Clear</option>
+   </template>
+    </component>
+    <component
+      v-if="editing && type !== 'select'"
       :is="inputTag"
       ref="inputRef"
       :type="type"
@@ -18,7 +38,7 @@
       @dblclick="setEditing(true)"
     >
       <slot v-if="renderDisplay" :value="value">{{ value || 'No value' }}</slot>
-      <template v-else>{{ value || 'No value' }}</template>
+      <template v-else>{{ value || selectedPackage || 'No value' }}</template>
     </component>
   </div>
 </template>
@@ -26,7 +46,7 @@
 <script setup lang="ts">
 import type { JSX } from 'vue/jsx-runtime';
 
-type EditableInputFieldType = "text" | "email";
+type EditableInputFieldType = "text" | "email"| "select";
 
 interface EditableInputFieldProps {
   value: string | number;
@@ -36,6 +56,8 @@ interface EditableInputFieldProps {
   className?: string;
   inputClassName?: string;
   displayClassName?: string;
+  selectedPackage?:"Premium" | "Elite" | "Basic" | "Pending" | "Clear";
+  packageDisplay?: boolean; 
   autoFocus?: boolean;
   onEnterBlur?: boolean; // for textarea to optionally blur on Enter
   displayAs?: "h1" | "p"| "h4" | "span" | "div";
@@ -43,48 +65,6 @@ interface EditableInputFieldProps {
 
 import { ref, watch, defineProps,withDefaults  } from 'vue';
 
-// const props = defineProps({
-//   value: {
-//     type: [String, Number],
-//     required: true,
-//   },
-//   type: {
-//     type: String ,
-//     default: 'text',
-//   },
-//   onChange: {
-//     type: Function,
-//     required: true,
-//   },
-//   renderDisplay: {
-//     type: Function,
-//     default: null,
-//   },
-//   className: {
-//     type: String,
-//     default: '',
-//   },
-//   inputClassName: {
-//     type: String,
-//     default: 'border p-1 rounded w-full',
-//   },
-//   displayClassName: {
-//     type: String,
-//     default: 'cursor-pointer',
-//   },
-//   autoFocus: {
-//     type: Boolean,
-//     default: false,
-//   },
-//   onEnterBlur: {
-//     type: Boolean,
-//     default: true,
-//   },
-//   displayAs: {
-//     type: String,
-//     default: 'p',
-//   },
-// });
 const props = withDefaults(defineProps<EditableInputFieldProps>(), {
   type: 'text',
   className: '',
@@ -92,10 +72,11 @@ const props = withDefaults(defineProps<EditableInputFieldProps>(), {
   displayClassName: 'cursor-pointer',
   autoFocus: false,
   onEnterBlur: true,
+  packageDisplay:true,
   displayAs: 'p',
 });
 const editing = ref(false);
-const inputRef = ref<HTMLElement | null>(null);
+const inputRef = ref<HTMLElement | HTMLSelectElement | null>(null);
 const inputTag = props.type === 'email' ? 'input' : 'input';
 const displayTag = props.displayAs;
 
@@ -111,6 +92,11 @@ const handleBlur = () => {
 
 const handleInput = (event: Event) => {
   const target = event.target as HTMLInputElement;
+  const newValue =  target.value;
+  props.onChange(String(newValue) as string);
+};
+const handleSelectInput = (event: Event) => {
+  const target = event.target as HTMLSelectElement;
   const newValue =  target.value;
   props.onChange(String(newValue) as string);
 };
@@ -140,5 +126,17 @@ const setEditing = (value: boolean) => {
 }
 .cursor-pointer {
   cursor: pointer;
+}
+
+select{
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+  border-radius: 4px;
+  width: 100%;
+  background: transparent;
+  outline: none;
+}option {
+  font-size: 10px;
+  color:black;
 }
 </style>

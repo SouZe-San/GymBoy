@@ -5,31 +5,46 @@
                 <div class="user-img">
                 <UserIcon style="width: 20px;" />
             </div>
-            <div class="user-info font-tt-regular" style="display: flex; gap: 1rem; align-items: center;">
+            <div class="user-info font-tt-regular" style="display: flex; gap: 2rem; align-items: center;">
                 <EditableInputs
               :value="userName"
               :onChange="updateUserName"
               displayAs="h1"
             />
-                <EditableInputs
-              value="sarah.j@example.com"
-              :onChange="updateUserName"
+            <span class="flex-center">
+<MailIcon style="width: 25px;"/>
+              <EditableInputs
+             
+              :value="email"
+              :onChange="updateEmail"
               displayAs="h4"
-            />
+              />
+            </span>
+            <span class="flex-center">
+<PhoneIcon style="width: 25px;"/>
                 <EditableInputs
-              value="984045698345"
-              :onChange="updateUserName"
+              :value="phone"
+              :onChange="updatePhone"
               displayAs="p"
             />
-               
+            </span>
+
             </div>
             </div>
             <div style="display: flex; gap: 1rem; align-items: center;"><div class="date">12/21/21</div>
-            <span class="badge silver">
-                Premium
+            <span class="badge" :class="packageClasses[packageName]">
+              
+                <EditableInputs
+              value=""
+              :selectedPackage="packageName"
+              :onChange="updatePackage"
+              type="select"
+              displayAs="span"
+            />
+              
             </span>
-            <span class="badge clear">
-                Clear
+            <span class="badge" :class="statusClasses[paymentStatus]">
+                               Clear
             </span></div>
         </div>
 
@@ -44,16 +59,49 @@ delete        </button></div>
 <script setup lang="ts">
 import UserIcon from '@/components/icon/UserIcon.vue';
 import EditableInputs from './EditableInputs.vue';
-import { DeleteIcon,CircleX ,SquarePen} from 'lucide-vue-next';
-import { ref } from 'vue';
-const userName = ref('Sarah Johnson');
-const updateUserName = (newValue: string ) => {
-  userName.value = newValue; // Update the ref with the new value
+import {PhoneIcon, MailIcon,CircleX ,SquarePen} from 'lucide-vue-next';
+
+
+// classes
+
+const packageClasses = {
+  Premium: 'silver',
+  Elite: 'pro',
+  Basic: 'basic',
 };
 
+const statusClasses = {
+  Pending: 'pending',
+  Clear: 'clear',
+};
+
+
+import { ref } from 'vue';
+const userName = ref('Sarah Johnson');
+const email = ref('sarah.j@example.com');
+const phone = ref('984045698345');
+const packageName = ref<"Premium" | "Elite" | "Basic">("Premium");
+const paymentStatus = ref<"Pending"|"Clear">("Clear");
+const updateUserName = (newValue: string ) => {
+  userName.value = newValue; 
+};
+const updateEmail = (newValue: string ) => {
+  email.value = newValue;
+};
+const updatePhone = (newValue: string ) => {
+  phone.value = newValue; 
+};
+const updatePackage = (newValue: string ) => {
+  packageName.value = newValue as "Premium" | "Elite" | "Basic"; 
+};
 </script>
 
 <style scoped>
+
+.inline{
+  display: inline;
+}
+
 .member_row{
     display: flex;
     width: 100%;
@@ -95,23 +143,23 @@ aspect-ratio: 1;
     border:1px solid transparent;
 }
 
-.pro{
-    color: #f7be55;
-    border-color: #f7b955;
-    background-color: #975b0036;
-}
 .pending{
-    
-
+  
+  
   background-color: #00bf425c;
   color: #04ff5a;
   border-color: #04ff5a;
-
+  
 }
 .clear{
    border-color: rgba(255, 255, 255, 0.249);
   background: #bdbdbd24;
   color: rgb(206, 205, 205);
+}
+.pro{
+    color: #f7be55;
+    border-color: #f7b955;
+    background-color: #975b0036;
 }
 
 .basic{
@@ -149,12 +197,12 @@ button{
 }
 
 .delete{
-     background: var(--color-highLight);
-    border-color: #ff2104;
+    color: var(--color-highLight);
+    border-color: var(--color-highLight);
+    background-color: rgba(68, 17, 10, 0.196);
 }
 .update{
-   background-color: white;
-    
-    color: black;
+  background-color: white;
+  color: black;
 }
 </style>

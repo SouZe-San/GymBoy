@@ -36,6 +36,10 @@ const router = createRouter({
           path: "announcements",
           component: () => import("@/views/admin/AnnouncementView.vue"),
         },
+        {
+          path: "schedule",
+          component: () => import("@/views/admin/ScheduleView.vue"),
+        },
       ],
     },
   ],

@@ -1,13 +1,9 @@
 <template>
     <section class="dashboard-section">
-        <!-- SIdebar - nav -->
-
              <SideBar user-type="admin"/>
     
 <main>
     
-
-    <!-- Main - dynamic View -->
     <router-view />
 
 </main>
