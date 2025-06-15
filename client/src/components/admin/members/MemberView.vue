@@ -10,7 +10,7 @@
         </h4>
         </div>
         <button class="button card-link-btn">
-<RouterLink to="/dashboard/members">View All</RouterLink>
+<RouterLink to="/admin/dashboard/members">View All</RouterLink>
         </button>
         </div>
      <div>

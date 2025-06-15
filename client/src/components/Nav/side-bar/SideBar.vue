@@ -60,30 +60,29 @@ interface NavItem {
   icon: FunctionalComponent;
   label: string;
   href: string;
-
 }
   const memberNavItems: NavItem[] = [
     
-    {
+   { 
       icon: LayoutDashboard,
       label: 'Dashboard',
-      href: '#dashboard',
+      href: '/member/dashboard',
      
     },
     {
       icon: FileText,
       label: 'Receipts',
-      href: '#receipts',
+      href: '/member/receipts',
     },
     {
       icon: Bell,
       label: 'Notifications',
-      href: '#notifications',
+      href: '/member/notifications',
     },
     {
       icon: User,
       label: 'Profile',
-      href: '#profile',
+      href: '/member/profile',
     },
   ];
 
@@ -91,28 +90,28 @@ interface NavItem {
     {
       icon: LayoutDashboard,
       label: 'Dashboard',
-      href: '/dashboard',
+      href: '/admin/dashboard',
      
     },
     {
       icon: Users,
       label: 'Members',
-      href: '/dashboard/members',
+      href: '/admin/dashboard/members',
     },
     {
       icon: FileText,
       label: 'Payments',
-      href: '/dashboard/bills',
+      href: '/admin/dashboard/bills',
     },
     {
       icon: Mail,
       label: 'Announcements',
-      href: '/dashboard/announcements',
+      href: '/admin/dashboard/announcements',
     },
     {
       icon: Calendar,
       label: 'Schedule',
-      href: '/dashboard/schedule',
+      href: '/admin/dashboard/schedule',
     },
   ];
 

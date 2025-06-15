@@ -1,6 +1,6 @@
 <template>
     <section class="dashboard-section">
-             <SideBar user-type="admin"/>
+             <SideBar user-type="member"/>
     
 <main>
     
