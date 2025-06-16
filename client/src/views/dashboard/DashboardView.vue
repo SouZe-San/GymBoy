@@ -30,7 +30,6 @@ main{
     margin-left: 16rem;
     overflow-y: scroll;
     
-    /* backdrop-filter: bl; */
    &::before{
     content: "";
     position: absolute;
@@ -54,5 +53,11 @@ main{
 section.inDashboard{
 width: 100%;
 padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  main{
+    margin-left: 0;
+  }
 }
 </style>

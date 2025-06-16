@@ -35,7 +35,7 @@
         />
         </div>
 
-        <div style="display: flex; gap: 1rem; width: 100%; margin-bottom: 2rem;">
+        <div class="mid-section">
           <MemberView style="flex: 1;"/>
           <MemberView style="flex:1"/>
         </div>
@@ -67,10 +67,21 @@ padding: 0 2rem;
   margin-bottom: 2rem;
 }
 
+.mid-section{
+display: flex; gap: 1rem; width: 100%; margin-bottom: 2rem;
+flex-direction: row;
+}
+
 
 @media (width >= 48rem){
     .card-section{
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
+}
+
+@media (max-width: 768px) {
+ .mid-section{
+flex-direction: column;
+}
 }
 </style>

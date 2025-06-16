@@ -1,13 +1,13 @@
 <template>
-        <aside className="hidden md:flex h-screen w-64 flex-col border-r bg-sidebar fixed left-0 top-0 z-20">
-      <div className="flex h-16 items-center border-b px-6">
-        <h2 className="text-xl font-bold text-gym-primary">GymBoy</h2>
+        <aside class="hidden md:flex h-screen w-64 flex-col border-r bg-sidebar fixed left-0 top-0 z-20">
+      <div class="flex h-16 items-center border-b px-6">
+        <h2 class="text-xl font-bold text-gym-primary">GymBoy</h2>
       </div>
       <div
       style="display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between;">
 
 
-      <nav className="flex-1 space-y-1 p-4">
+      <nav class="flex-1 space-y-1 p-4">
       
           <RouterLink
           v-for="item in navItems"
@@ -23,16 +23,16 @@
           </RouterLink>
       
       </nav>
-      <div className="border-t p-4">
-        <div className="flex items-center gap-3">
-          <div className="rounded-full bg-gym-primary/10 p-1">
-            <User className="h-5 w-5 text-gym-primary" />
+      <div class="border-t p-4 third-part">
+        <div class="flex items-center gap-3">
+          <div class="rounded-full bg-gym-primary/10 p-1">
+            <User class="h-5 w-5 text-gym-primary" />
           </div>
           <div>
-            <p className="text-sm font-medium">
+            <p class="text-sm font-medium">
               {{userType === 'admin' ? 'Gym Admin' : 'John Doe'}}
             </p>
-            <p className="text-xs text-muted-foreground">{{userType}}</p>
+            <p class="text-xs text-muted-foreground">{{userType}}</p>
           </div>
         </div>
       </div>
@@ -121,7 +121,8 @@ interface NavItem {
 <style scoped>
 
 aside {
-   display: none;
+   display: flex;
+    flex-direction: column; 
 background-color: var(--sidenav-bg);
   border-right: 1px solid #e0e0e038;
   position: fixed;
@@ -133,19 +134,15 @@ background-color: var(--sidenav-bg);
   z-index: 20; 
   transition: background-color 0.3s ease; 
 }
-
-@media (min-width: 768px) {
-  aside {
-    display: flex;
-    flex-direction: column; 
-  }
+.third-part{
+  display: block;
 }
+
 
 aside .flex {
   display: flex;
   align-items: center;
   height: 4rem; 
-; 
   padding: 0 1.5rem; 
 }
 
@@ -256,6 +253,33 @@ background-color: #00000024;
     border-color: rgba(255, 255, 255, 0.159);
   }
 }
+@media (max-width: 768px) {
+  .third-part{
+    display: none;
+  }
+  aside .flex{
+    display: none !important;
+  }
+  aside {
+   left: 50%;
+    transform: translateX(-50%);
+    top: unset;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+  }
 
+  nav{
+    display: flex;
+    flex-direction: row;
+   justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav-link{
+    padding:1rem
+  }
+}
 
 </style>

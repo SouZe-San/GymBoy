@@ -16,7 +16,7 @@
          
         </div>
       
-        <div style="display:flex; justify-content: space-between;  gap: 1rem;">
+        <div class="mid-section">
             <aside style="flex:1; padding: 1.5rem;" class="card_bg">
              <div style="margin-bottom: 3rem;">      <h1 class="card-title">
             Recent <br/> Transactions
@@ -57,5 +57,12 @@ const mockReceipt = {
 </script>
 
 <style scoped>
-
+.mid-section {
+  display:flex; justify-content: space-between;  gap: 1rem;
+}
+@media (max-width: 768px) {
+  .mid-section {
+    flex-direction: column;
+  }
+}
 </style>

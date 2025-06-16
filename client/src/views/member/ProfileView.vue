@@ -413,4 +413,9 @@ const toggleEditMode = () => {
   color: #166534;
   border: 1px solid #bbf7d0;
 }
+@media (max-width: 768px) {
+  .profile-container {
+    margin-bottom: 8rem;
+  }
+}
 </style>
