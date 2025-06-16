@@ -43,14 +43,29 @@ const router = createRouter({
       ],
     },
     {
-      path: "/member/dashboard",
+      path: "/member",
       name: "dashboard-member",
       component: DashboardView,
       children: [
         {
-          path: "",
+          path: "dashboard",
           name: "dashboard-member-home",
           component: () => import("@/components/members/DashboardView.vue"),
+        },
+        {
+          path: "receipts",
+          name: "receipts",
+          component: () => import("@/views/member/ReciptView.vue"),
+        },
+        {
+          path: "profile",
+          name: "profile",
+          component: () => import("@/views/member/ProfileView.vue"),
+        },
+        {
+          path: "notifications",
+          name: "notifications",
+          component: () => import("@/views/member/NotificationView.vue"),
         },
       ],
     },

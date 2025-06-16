@@ -38,22 +38,25 @@
 
             <div style="display: flex; gap: 1rem; width: 100%; margin-bottom: 2rem;">
          
+                <!-- Left Side - Receipt -->
           <article style="flex:1; padding: 1.5rem;" class="card_bg">
             <div style="display: flex; justify-content: space-between; margin-bottom: 3rem;">
         <div>
           <h1 class="card-title">
-            Recent Announcement
+            Recent <br/> Transactions
           </h1>
           <h4>
-          Manage upcoming announcements for your members
+          Your payment history for the last 3 months
           </h4>
         </div>       
            <button class="button card-link-btn">
                  View All
            </button>
       </div>
-            <NotificationList />
+            <RecentReceiptView />
           </article>
+
+          <!-- Right Side - Announcement -->
           <article style="flex:1; padding: 1.5rem;" class="card_bg">
             <div style="display: flex; justify-content: space-between; margin-bottom: 3rem;">
         <div>
@@ -70,7 +73,7 @@
 
            </button>
       </div>
-            <NotificationList />
+            <NotificationList :notifications="notifications"/>
           </article>
         </div>
       </section>
@@ -81,11 +84,44 @@
 import { RouterLink } from 'vue-router';
 import StatCard from '../StatCard.vue';
 import NotificationList from './NotificationList.vue';
+import RecentReceiptView from './receipts/RecentReceiptView.vue';
+import type { I_Notification } from './NotificationList.vue';
 
 import { 
   Users,
   FileText,Calendar1Icon
 } from 'lucide-vue-next';
+
+
+    const notifications :I_Notification[]  = [
+      {
+        id: 'not_123456',
+        title: 'Gym will be closed for maintenance',
+        description: 'The gym will be closed on Sunday, May 5th for scheduled maintenance.',
+        date: '2025-04-28',
+
+        type: 'announcement',
+      },
+      {
+        id: 'not_123457',
+        title: 'Your membership fee is due soon',
+        description: 'Your monthly membership fee of $49.99 is due on May 15, 2025.',
+        date: '2025-04-25',
+    
+        type: 'payment',
+      },
+      {
+        id: 'not_123458',
+        title: 'Yoga class schedule updated',
+        description: 'The schedule for yoga classes has been updated for the month of May.',
+        date: '2025-04-20',
+       
+        type: 'event',
+      },
+    ];
+
+
+
 </script>
 
 <style scoped>

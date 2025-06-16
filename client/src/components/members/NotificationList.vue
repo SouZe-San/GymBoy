@@ -26,7 +26,7 @@
 
       <div class="space-y-1">
         <div class="flex items-center justify-between">
-          <h4 :class="['font-medium notify-title', !notification.read && 'text-gym-primary']">
+          <h4 :class="['font-medium notify-title']">
             {{ notification.title }}
           </h4>
         </div>
@@ -39,43 +39,26 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue';
+<script setup lang="ts">
+
 import { Mail, Bell, Calendar } from 'lucide-vue-next'; // Assuming you have a Vue version of lucide-react
 
+   
+export interface I_Notification {
+        id: string;
+        title:  string;
+        description: string; 
+        date: string;
+        type: 'announcement' | 'payment' | 'event';
+      }
 
-    const notifications = ref([
-      {
-        id: 'not_123456',
-        title: 'Gym will be closed for maintenance',
-        description: 'The gym will be closed on Sunday, May 5th for scheduled maintenance.',
-        date: '2025-04-28',
-        read: false,
-        type: 'announcement',
-      },
-      {
-        id: 'not_123457',
-        title: 'Your membership fee is due soon',
-        description: 'Your monthly membership fee of $49.99 is due on May 15, 2025.',
-        date: '2025-04-25',
-        read: false,
-        type: 'payment',
-      },
-      {
-        id: 'not_123458',
-        title: 'Yoga class schedule updated',
-        description: 'The schedule for yoga classes has been updated for the month of May.',
-        date: '2025-04-20',
-        read: true,
-        type: 'event',
-      },
-    ]);
+defineProps<{notifications:I_Notification[]}>()
 
-    const formatDate = (date) => {
+    const formatDate = (date : string) => {
       return new Date(date).toLocaleDateString();
     };
 
-    const getIcon = (type) => {
+    const getIcon = (type :'announcement' | 'payment' | 'event' ) => {
       switch (type) {
         case 'announcement':
           return Mail;
