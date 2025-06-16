@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import DashboardView from "@/views/dashboard/DashboardView.vue";
+import DashboardView from "@/views/dashboard/DashboardLayout.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -15,14 +15,14 @@ const router = createRouter({
       component: () => import("@/views/AuthenticationView.vue"),
     },
     {
-      path: "/admin/dashboard",
+      path: "/dashboard",
       name: "dashboard",
       component: DashboardView,
       children: [
         {
           path: "",
           name: "dashboard-home",
-          component: () => import("@/components/admin/DashboardView.vue"),
+          component: () => import("@/views/dashboard/DashboardView.vue"),
         },
         {
           path: "members",
@@ -39,18 +39,6 @@ const router = createRouter({
         {
           path: "schedule",
           component: () => import("@/views/admin/ScheduleView.vue"),
-        },
-      ],
-    },
-    {
-      path: "/member",
-      name: "dashboard-member",
-      component: DashboardView,
-      children: [
-        {
-          path: "dashboard",
-          name: "dashboard-member-home",
-          component: () => import("@/components/members/DashboardView.vue"),
         },
         {
           path: "receipts",

@@ -30,7 +30,7 @@
           </div>
           <div>
             <p class="text-sm font-medium">
-              {{userType === 'admin' ? 'Gym Admin' : 'John Doe'}}
+              {{userType === 'admin' ? 'Aunt Rose' : 'John Doe'}}
             </p>
             <p class="text-xs text-muted-foreground">{{userType}}</p>
           </div>
@@ -51,11 +51,24 @@ import {
   Mail
 } from 'lucide-vue-next';
 
-import type { FunctionalComponent } from 'vue';
-import { RouterLink } from 'vue-router';
+import { computed,watchEffect,  type FunctionalComponent } from 'vue';
+import { RouterLink, useRouter } from 'vue-router';
+
 const {userType } = defineProps<{
-  userType: 'member' | 'admin';
+  userType: 'member' | 'admin' | null;
 }>();
+const router = useRouter();
+
+watchEffect(() => {
+  
+  if (!userType) {
+    console.error('Invalid user type:', userType);
+    router.push('/'); // Redirect to home or login page
+  }
+});
+
+
+
 interface NavItem {
   icon: FunctionalComponent;
   label: string;
@@ -66,23 +79,23 @@ interface NavItem {
    { 
       icon: LayoutDashboard,
       label: 'Dashboard',
-      href: '/member/dashboard',
+      href: '/dashboard',
      
     },
     {
       icon: FileText,
       label: 'Receipts',
-      href: '/member/receipts',
+      href: '/dashboard/receipts',
     },
     {
       icon: Bell,
       label: 'Notifications',
-      href: '/member/notifications',
+      href: '/dashboard/notifications',
     },
     {
       icon: User,
       label: 'Profile',
-      href: '/member/profile',
+      href: '/dashboard/profile',
     },
   ];
 
@@ -90,32 +103,32 @@ interface NavItem {
     {
       icon: LayoutDashboard,
       label: 'Dashboard',
-      href: '/admin/dashboard',
+      href: '/dashboard',
      
     },
     {
       icon: Users,
       label: 'Members',
-      href: '/admin/dashboard/members',
+      href: '/dashboard/members',
     },
     {
       icon: FileText,
       label: 'Payments',
-      href: '/admin/dashboard/bills',
+      href: '/dashboard/bills',
     },
     {
       icon: Mail,
       label: 'Announcements',
-      href: '/admin/dashboard/announcements',
+      href: '/dashboard/announcements',
     },
     {
       icon: Calendar,
       label: 'Schedule',
-      href: '/admin/dashboard/schedule',
+      href: '/dashboard/schedule',
     },
   ];
 
-  const navItems = userType === 'admin' ? adminNavItems : memberNavItems;
+  const navItems = computed(()=> userType === 'admin' ? adminNavItems : memberNavItems);
 </script>
 
 <style scoped>
