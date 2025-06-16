@@ -15,7 +15,7 @@ const router = createRouter({
       component: () => import("@/views/AuthenticationView.vue"),
     },
     {
-      path: "/dashboard",
+      path: "/admin/dashboard",
       name: "dashboard",
       component: DashboardView,
       children: [
@@ -35,6 +35,37 @@ const router = createRouter({
         {
           path: "announcements",
           component: () => import("@/views/admin/AnnouncementView.vue"),
+        },
+        {
+          path: "schedule",
+          component: () => import("@/views/admin/ScheduleView.vue"),
+        },
+      ],
+    },
+    {
+      path: "/member",
+      name: "dashboard-member",
+      component: DashboardView,
+      children: [
+        {
+          path: "dashboard",
+          name: "dashboard-member-home",
+          component: () => import("@/components/members/DashboardView.vue"),
+        },
+        {
+          path: "receipts",
+          name: "receipts",
+          component: () => import("@/views/member/ReciptView.vue"),
+        },
+        {
+          path: "profile",
+          name: "profile",
+          component: () => import("@/views/member/ProfileView.vue"),
+        },
+        {
+          path: "notifications",
+          name: "notifications",
+          component: () => import("@/views/member/NotificationView.vue"),
         },
       ],
     },

@@ -170,3 +170,31 @@ body {
     font-family: "Railway";
   }
 }
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-heading);
+}
+.card-link-btn {
+  background: var(--color-highLight);
+  color: white;
+  border-color: #ff2104;
+  padding: 0.5rem 1rem;
+  /* border-radius: 0.375rem; */
+  font-weight: 500;
+  /* font-size: 1rem; */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: space-between;
+}

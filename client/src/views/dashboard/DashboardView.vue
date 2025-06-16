@@ -1,13 +1,9 @@
 <template>
     <section class="dashboard-section">
-        <!-- SIdebar - nav -->
-
-             <SideBar user-type="admin"/>
+             <SideBar user-type="member"/>
     
 <main>
     
-
-    <!-- Main - dynamic View -->
     <router-view />
 
 </main>
@@ -26,12 +22,14 @@ section.dashboard-section{
     display: flex;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
 }
 main{
    padding-top: calc(var(--nav-height) - 2rem);
     flex-grow: 1;
     margin-left: 16rem;
-    /* backdrop-filter: bl; */
+    overflow-y: scroll;
+    
    &::before{
     content: "";
     position: absolute;
@@ -52,5 +50,14 @@ main{
     box-shadow: 0 0 55px 56px rgba(202, 42, 6, 0.508);
    }
 }
+section.inDashboard{
+width: 100%;
+padding: 0 2rem;
+}
 
+@media (max-width: 768px) {
+  main{
+    margin-left: 0;
+  }
+}
 </style>

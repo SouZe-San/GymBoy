@@ -8,13 +8,10 @@
           <h4>
           Manage upcoming announcements for your members
           </h4>
-        </div>
-        <!-- <div> -->
-          <!-- <ArrowButton right :title="'Create New'" /> -->
-           <button class="button card-link-btn">
+        </div>       
+           <button class="button card-link-btn" @click="toggleModal">
                  <CirclePlus  :size="16"/> New 
            </button>
-        <!-- </div> -->
       </div>
     <table class="w-full">
       <thead>
@@ -59,17 +56,26 @@
       </tbody>
     </table>
   </div>
+  <CreateAnnouncement :toggle="toggleModal" v-if="openModal"/>
 </template>
 
 <script setup lang="ts">
 
 import { Trash2, Edit, CirclePlus } from 'lucide-vue-next';
-import ArrowButton from '../ArrowButton.vue';
+import CreateAnnouncement from './CreateAnnouncement.vue';
+import { ref } from 'vue';
+
+const openModal = ref(false);
+
+const toggleModal = () => {
+    openModal.value = !openModal.value;
+};
+
 interface Announcement {
   id: string;
   title: string;
   content: string;
-  scheduledDate: string; // When the announcement will be sent
+  scheduledDate: string;
   status: 'draft' | 'scheduled' | 'sent';
   type: 'general' | 'important' | 'event';
 }
