@@ -1,14 +1,6 @@
-# Gymboy
+# Gymboy : frontend
 
 This template should help get you started developing with Vue 3 in Vite.
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
 
 ## Project Setup
 
@@ -34,6 +26,8 @@ pnpm build
 pnpm lint
 ```
 
+## Landing Page
+
   <img src="../.github/img/dark-hero.png" alt="GYM Management System" align="center">
 
 #
@@ -42,6 +36,16 @@ pnpm lint
 
 ---
 
-### Admin Dashboard
+## Admin Dashboard
 
-  <img src="../.github/img/admin-dashboard.png" alt="GYM Management System" align="center">
+  <img src="../.github/img/admin/admin-dashboard.png" alt="GYM Management System" align="center">
+
+  <img src="../.github/img/admin/members.png" alt="GYM Management System" align="center">
+
+---
+
+## Gym Member's Dashboard
+
+  <img src="../.github/img/members/dashboard.png" alt="GYM Management System" align="center">
+
+  <img src="../.github/img/members/bill.png" alt="GYM Management System" align="center">
