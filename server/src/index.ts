@@ -1,4 +1,3 @@
-// hello#00@db
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { supabaseConnection } from "./database";
@@ -8,6 +7,7 @@ import { logger } from "hono/logger";
 import userRoutes from "./routes/user.routes";
 import memberRoutes from "./routes/member.routes";
 import adminRoutes from "./routes/admin.routes";
+import authRoutes from "./routes/auth.routes";
 
 //middleware
 import authMiddleware from "./middlewares/auth.middleware";
@@ -43,6 +43,7 @@ app.get("/notfound", (c) => {
 
 // Connect other apps
 app.route("/user", userRoutes);
+app.route("/auth", authRoutes);
 app.route("/admin", adminRoutes);
 app.route("/member", memberRoutes);
 
