@@ -2,7 +2,7 @@
     <section>
         <div style="margin-bottom: 1.5rem;">
         <h1 class="welcome-text"
-        >Welcome <span >sexyGyme,</span></h1>
+        >Welcome <span class="tag">Admin</span> <span class="username">AuntRose,</span></h1>
         <p class="text-muted-foreground">
           Monitor your gym's performance and member activity.
         </p>
@@ -15,28 +15,31 @@
           :trend="{ value: 12, isPositive: true }"
         />
         <StatCard
-          title="Total Members"
-          value="246"
+          title="New Members"
+          description="This month"
+          value="6"
           :icon="Users"
-          :trend="{ value: 12, isPositive: true }"
+          :trend="{ value: 2, isPositive: true }"
         />
                <StatCard
           title="Revenue"
-          value="$12,450"
+          value=" ₹12,450"
           :icon="FileText"
           description="This month"
           :trend="{ value: 5, isPositive: true }"
         />
-        <StatCard
-          title="Total Members"
-          value="246"
-          :icon="Users"
-          :trend="{ value: 12, isPositive: true }"
+               <StatCard
+          title="Pending Payments"
+          value=" 3"
+          :icon="FileText"
+          description="This month"
+          :trend="{ value: 2, isPositive: false }"
         />
+     
         </div>
 
         <div class="mid-section">
-          <MemberView style="flex: 1;"/>
+          <GraphView style="flex: 1;"/>
           <MemberView style="flex:1"/>
         </div>
 
@@ -47,6 +50,7 @@
 <script setup lang="ts">
 import NotificationList from './NotificationList.vue';
 import MemberView from './members/MemberView.vue';
+import GraphView from './GraphView.vue';
 import { 
   Users,
   FileText

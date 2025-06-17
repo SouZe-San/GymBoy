@@ -2,8 +2,8 @@
   <section>
     <div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between">
       <div>
-        <h1 class="welcome-text">Welcome <span>Biri leo</span></h1>
-        <p class="text-muted-foreground">Monitor your gym's performance and member activity.</p>
+        <h1 class="welcome-text">Welcome <span class="tag">Back</span> <span class="username">Emily,</span></h1>
+        <p class="text-muted-foreground">Here's an overview of your membership status and recent activities..</p>
       </div>
 
       <div

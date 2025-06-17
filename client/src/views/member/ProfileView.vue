@@ -139,10 +139,10 @@ import { ref, computed } from 'vue'
 
 // Reactive user information
 const userInfo = ref({
-  firstName: 'John',
-  lastName: 'Doe',
-  email: 'john.doe@example.com',
-  phone: '+1 (555) 123-4567',
+  firstName: 'Emily',
+  lastName: 'Davis',
+  email: 'emily.d@example.com',
+  phone: '+91 23456789',
   address: '123 Main St, City, State 12345'
 })
 

@@ -10,7 +10,7 @@ const authMiddleware = createMiddleware(async (c, next) => {
     c.req.header("Authorization")?.split(" ")[1] || (await getSignedCookie(c, "auth_token"));
 
   try {
-    if (!token) {
+    if (!token || Object.keys(token).length === 0) {
       throw new ApiError(resStatus.Unauthorized, "Login Required to Access this Resource");
     }
     const secret = process.env.ACCESS_TOKEN_SECRET ?? "SekiAsbe00Na?";

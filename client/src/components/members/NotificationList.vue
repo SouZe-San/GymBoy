@@ -81,6 +81,7 @@ defineProps<{notifications:I_Notification[]}>()
 .notify-title{
     font-size: 1.5rem;
     line-height: 1.01; /* 16px */
+    color:white;
 }
 
 .space-y-4 > * + * {

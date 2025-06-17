@@ -10,6 +10,15 @@ app.get("/", authMiddleware, async (c: Context) => {
   return c.body("Hello from Admin - " + user.email);
 });
 
+export const adminId = async () => {
+  // check if the user exists
+  const { data: users, error } = await supabase!
+    .from("admins")
+    .select("id")
+    .eq("email", "admin.gym@gym.com");
+  return users && users.length > 0 ? users[0].id : null;
+};
+
 //! update_memberShip (Add Member)
 app.patch("/create", async (c: Context) => {
   // get the data from the request body
@@ -32,10 +41,11 @@ app.patch("/create", async (c: Context) => {
     return c.body("User not found", resStatus.NotFound);
   }
 
+  const admin_id = await adminId();
   // update the user details
   const { data, error: update_error } = await supabase
     .from("users")
-    .update({ membership_type, role: "member", join_date: new Date() })
+    .update({ membership_type, role: "member", join_date: new Date(), admin_id })
     .eq("email", email);
 
   // if not updated throw an error
@@ -126,12 +136,12 @@ app.patch("/update:id", async (c: Context) => {
     }
 
     // get the data from the request body
-    const { email, phone } = await c.req.json();
+    const { email, phone, name, package_name } = await c.req.json();
 
     // update the user details
     const { data, error: update_error } = await supabase
       .from("users")
-      .update({ email, phone })
+      .update({ email, phone, name, membership_type: package_name })
       .eq("id", id);
 
     // if not updated throw an error
@@ -160,14 +170,14 @@ app.patch("/update:id", async (c: Context) => {
 //! Create Bills
 app.post("/createBill", async (c: Context) => {
   // get the data from the request body
-  const { user_id, amount } = await c.req.json();
+  const { userEmail, amount } = await c.req.json();
   try {
     if (!supabase) {
       throw new ApiError(400, "Database connection failed");
     }
 
     // check if the user exists
-    const { data: users, error } = await supabase.from("users").select("id").eq("id", user_id);
+    const { data: users, error } = await supabase.from("users").select("id").eq("email", userEmail);
 
     // if not found throw an error
     if (error) {
@@ -179,10 +189,11 @@ app.post("/createBill", async (c: Context) => {
       return c.body("User not found", resStatus.NotFound);
     }
 
+    const admin_id = await adminId();
     // create the bill
     const { data, error: create_error } = await supabase
       .from("bills")
-      .insert([{ member_id: user_id, amount, issue_date: new Date() }]);
+      .insert([{ member_id: users[0].id, amount, issue_date: new Date(), admin_id }]);
 
     // if not created throw an error
     if (create_error) {
@@ -277,7 +288,7 @@ app.patch("/assignFeePackage", async (c: Context) => {
   }
 });
 
-//! Assign Notification for monthly
+//! Assign Notification for monthly (alert to Member)
 app.post("/sendNotification:id", async (c: Context) => {
   const id = c.req.param("id");
   try {
@@ -304,10 +315,11 @@ app.post("/sendNotification:id", async (c: Context) => {
     // get the data from the request body
     const { message } = await c.req.json();
 
+    const admin_id = await adminId();
     // update the user details
     const { data, error: update_error } = await supabase
       .from("notifications")
-      .insert([{ member_id: id, message, notification_date: new Date() }])
+      .insert([{ member_id: id, message, notification_date: new Date(), admin_id }])
       .select();
 
     // if not updated throw an error
@@ -320,8 +332,8 @@ app.post("/sendNotification:id", async (c: Context) => {
     }
 
     // send the response as success
-    c.status(200);
-    return c.json({ message: "User details updated successfully", data });
+    c.status(201);
+    return c.json({ message: "Notification Send successfully" });
   } catch (error) {
     console.error("error from register: ", error);
 
@@ -332,6 +344,83 @@ app.post("/sendNotification:id", async (c: Context) => {
     return c.body("Something went Wrong in Server", 500);
   }
 });
+
+//! Create Announcement
+app.post("/announcement/create", async (c: Context) => {
+  try {
+    // get the data from the request body
+    const { title, message, type } = await c.req.json();
+
+    if (!supabase) {
+      throw new ApiError(400, "Database connection failed");
+    }
+    const admin_id = await adminId();
+    // update the user details
+    const { data, error: update_error } = await supabase
+      .from("notifications")
+      .insert([{ title, message, type, notification_date: new Date(), admin_id }])
+      .select();
+
+    // if not updated throw an error
+    if (update_error) {
+      console.error("Error from user update: ", update_error);
+      throw new ApiError(
+        resStatus.InternalServerError,
+        "Error Throwing from user update at Data update"
+      );
+    }
+
+    // send the response as success
+    c.status(201);
+    return c.json({ message: "Announcement Created" });
+  } catch (error) {
+    console.error("error from register: ", error);
+
+    if (error instanceof Error) {
+      const { message } = error;
+      return c.body(message, 500);
+    }
+    return c.body("Something went Wrong in Server", 500);
+  }
+});
+
+//! Get/Read Announcements
+app.get("/announcements", async (c: Context) => {
+  try {
+    if (!supabase) {
+      throw new ApiError(400, "Database connection failed");
+    }
+
+    const admin_id = await adminId();
+    // update the user details
+    const { data, error: update_error } = await supabase
+      .from("notifications")
+      .select("*")
+      .eq("admin_id", admin_id);
+
+    // if not updated throw an error
+    if (update_error) {
+      console.error("Error from user update: ", update_error);
+      throw new ApiError(
+        resStatus.InternalServerError,
+        "Error Throwing from user update at Data update"
+      );
+    }
+
+    // send the response as success
+    c.status(200);
+    return c.json({ message: "Announcement Created", announcements: data });
+  } catch (error) {
+    console.error("error from register: ", error);
+
+    if (error instanceof Error) {
+      const { message } = error;
+      return c.body(message, 500);
+    }
+    return c.body("Something went Wrong in Server", 500);
+  }
+});
+
 // Report export
 // Supplement store
 // Diet Details
