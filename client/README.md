@@ -28,7 +28,7 @@ pnpm lint
 
 ## Landing Page
 
-  <img src="../.github/img/dark-hero.png" alt="GYM Management System" align="center">
+  <img src="../.github/img/dark-hero.png" alt="GYM Management System" align="center" style="border-radius: 10px;">
 
 #
 
@@ -38,14 +38,19 @@ pnpm lint
 
 ## Admin Dashboard
 
-  <img src="../.github/img/admin/admin-dashboard.png" alt="GYM Management System" align="center">
+  <img src="../.github/img/admin/dashboard-1.png" alt="GYM Management System" align="center" style="border-radius: 10px;">
 
-  <img src="../.github/img/admin/members.png" alt="GYM Management System" align="center">
+<br/>
+  <img src="../.github/img/admin/admin-dashboard.png" alt="GYM Management System" align="center" style="border-radius: 10px;">
+
+<br/>
+
+  <img src="../.github/img/admin/members.png" alt="GYM Management System" align="center" style="border-radius: 10px;">
 
 ---
 
 ## Gym Member's Dashboard
 
-  <img src="../.github/img/members/dashboard.png" alt="GYM Management System" align="center">
+  <img src="../.github/img/members/dashboard.png" alt="GYM Management System" align="center" style="border-radius: 10px;">
 
-  <img src="../.github/img/members/bill.png" alt="GYM Management System" align="center">
+  <img src="../.github/img/members/bill.png" alt="GYM Management System" align="center" style="border-radius: 10px;">
