@@ -4,7 +4,7 @@
     
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
           <div>
-            <h1 style="font-size: 2rem;" class="font-cozi">Receipt #123456</h1>
+            <h1 style="font-size: 2rem; color: white;" class="font-cozi">Receipt #123456</h1>
             <h4>
               {{new Date(receipt.date).toLocaleDateString('en-US', {
                 year: 'numeric',
@@ -190,7 +190,7 @@ const {receipt} = defineProps<ReceiptDetailsProps>();
 }
 
 .text-muted-foreground {
-  color: rgba(209, 209, 209, 0.6); /* Adjust to your muted text color */
+  color: rgba(227, 227, 227, 0.867); /* Adjust to your muted text color */
 }
 
 .mr-3 {

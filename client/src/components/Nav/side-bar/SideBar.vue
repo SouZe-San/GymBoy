@@ -23,18 +23,21 @@
           </RouterLink>
       
       </nav>
-      <div class="border-t p-4 third-part">
+      <div class="border-t p-4 third-part flex ">
         <div class="flex items-center gap-3">
           <div class="rounded-full bg-gym-primary/10 p-1">
             <User class="h-5 w-5 text-gym-primary" />
           </div>
           <div>
             <p class="text-sm font-medium">
-              {{userType === 'admin' ? 'Aunt Rose' : 'John Doe'}}
+              {{userType === 'admin' ? 'Aunt Rose' : 'Emily Davis'}}
             </p>
             <p class="text-xs text-muted-foreground">{{userType}}</p>
           </div>
         </div>
+ <button class="p-1" style=" outline: none; border: none; background: transparent; cursor: pointer;">
+            <LogOut/>
+          </button>
       </div>
             </div>
     </aside>
@@ -48,12 +51,12 @@ import {
   Users, 
   Calendar, 
   User,
-  Mail
+  Mail,
+  LogOut
 } from 'lucide-vue-next';
 
 import { computed,watchEffect,  type FunctionalComponent } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
-
 const {userType } = defineProps<{
   userType: 'member' | 'admin' | null;
 }>();

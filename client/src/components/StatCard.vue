@@ -11,7 +11,7 @@
         style="display: flex; justify-content: space-between; align-items:flex-end ;">
         <div>
           <h3      
-           style="font-weight: 700; font-size: 1.5rem;">{{value}}</h3>
+           style="font-weight: 700; font-size: 1.5rem; color:white;">{{value}}</h3>
    
             <p class="text-muted-foreground" v-if="description"
             style="font-size: 12px; margin-top: 4px;">{{description}}</p>
@@ -55,7 +55,7 @@ icon: FunctionalComponent;
   margin-right: 0.5rem; /* Space between icon and text */
 }
 .text-muted-foreground {
-    color: var(--text-color);
+   color: rgba(235, 235, 235, 0.94);
 }
 .text-green-500 {
     color: oklch(72.3% 0.219 149.579);

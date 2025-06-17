@@ -28,8 +28,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { FileText } from 'lucide-vue-next'; // Ensure you have the correct import for lucide-vue
-// Adjust the path as necessary
+import { FileText } from 'lucide-vue-next'; 
 
 interface Receipt {
   id: string;
@@ -71,10 +70,9 @@ const formatDate = (dateString:string) => {
 </script>
 
 <style scoped>
-/* styles.css */
 
 .space-y-4 > * + * {
-  margin-top: 1rem; /* Adjust as needed for spacing */
+  margin-top: 1rem; 
 }
 
 .flex {
@@ -88,24 +86,25 @@ const formatDate = (dateString:string) => {
 
 .justify-between {
   justify-content: space-between;
+  transition: boxShadow .3s ease-in-out;
 }
 
 .py-2 {
-  padding-top: 0.5rem; /* 8px */
-  padding-bottom: 0.5rem; /* 8px */
+  padding-top: 0.5rem; 
+  padding-bottom: 0.5rem; 
 }
 
 .hover\:bg-muted\/50:hover {
-  background-color: rgba(0, 91, 6, 0.309); /* Adjust to your muted color */
+ box-shadow: 0 2px 8px -5px #ffffff3a;
 }
 
 .rounded-md {
-  border-radius: 0.375rem; /* 6px */
+  border-radius: 0.375rem; 
 }
 
 .px-2 {
-  padding-left: 0.5rem; /* 8px */
-  padding-right: 0.5rem; /* 8px */
+  padding-left: 0.5rem; 
+  padding-right: 0.5rem; 
 }
 
 .transition-colors {
@@ -113,40 +112,40 @@ const formatDate = (dateString:string) => {
 }
 
 .w-10 {
-  width: 2.5rem; /* 40px */
+  width: 2.5rem; 
 }
 
 .h-10 {
-  height: 2.5rem; /* 40px */
+  height: 2.5rem; 
 }
 
 .rounded-full {
-  border-radius: 9999px; /* Fully rounded */
+  border-radius: 9999px;
 }
 
 .bg-gym-accent {
   background-color: rgba(0, 255, 94, 0.219); 
-  color:rgb(89, 255, 89);/* Example color, adjust as needed */
+  color:rgb(89, 255, 89);
 }
 
 .text-gym-accent {
-  color: #ffffff; /* Example color, adjust as needed */
+  color: #ffffff; 
 }
 
 .font-medium {
-  font-weight: 500; /* Medium weight */
+  font-weight: 500; 
 }
 
 .text-sm {
-  font-size: 0.875rem; /* 14px */
+  font-size: 0.875rem; 
 }
 
 .text-muted-foreground {
-  color: rgba(0, 0, 0, 0.6); /* Adjust to your muted text color */
+  color: rgba(204, 204, 204, 0.6);
 }
 
 .mr-3 {
-  margin-right: 0.75rem; /* 12px */
+  margin-right: 0.75rem; 
 }
 
 .button {

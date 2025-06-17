@@ -11,9 +11,9 @@
     >
       <!-- <slot name="options"></slot> -->
    <template v-if="packageDisplay">
-     <option value="Premium" :selected="selectedPackage === 'Premium'">Premium</option>
-    <option value="Elite" :selected="selectedPackage === 'Elite'">Elite</option>
-    <option value="Basic" :selected="selectedPackage === 'Basic'">Basic</option>
+     <option value="Premium" :selected="selectedPackage === 'premium'">Premium</option>
+    <option value="Elite" :selected="selectedPackage === 'elite'">Elite</option>
+    <option value="Basic" :selected="selectedPackage === 'basic'">Basic</option>
    </template>
    <template v-else>
      <option value="Pending" :selected="selectedPackage === 'Pending'">Pending</option>
@@ -56,7 +56,7 @@ interface EditableInputFieldProps {
   className?: string;
   inputClassName?: string;
   displayClassName?: string;
-  selectedPackage?:"Premium" | "Elite" | "Basic" | "Pending" | "Clear";
+  selectedPackage?:"premium" | "elite" | "basic" | "Pending" | "Clear";
   packageDisplay?: boolean; 
   autoFocus?: boolean;
   onEnterBlur?: boolean; // for textarea to optionally blur on Enter

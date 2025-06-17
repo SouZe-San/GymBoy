@@ -3,7 +3,9 @@
       
         <div style="display:flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
           <div>
-            <h1 class="tracking-tight font-mogen">Payment Receipts</h1>
+            <h1 class="tracking-tight font-mogen" style="font-size: 4rem;
+  line-height: 0.8;
+  font-weight: bold; color: white;">Payment Receipts</h1>
             <p class="">
               View and download your payment history and receipts.
             </p>

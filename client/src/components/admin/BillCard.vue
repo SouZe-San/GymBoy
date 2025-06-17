@@ -1,14 +1,14 @@
 <template>
     <div class="card_bg billCard">
-        <h1>User Name</h1>
-        <h3>userEmail@xyc.com</h3>
+        <h1 style="color: white; font-size: 1.5rem; ">{{ userName }}</h1>
+        <h3 style="font-size: 14px;">{{ userEmail }}</h3>
         <p style="margin-top: 1rem;">
             <span >Package : </span>
-            <span >Premium</span>
+            <span style="color: aliceblue; font-weight: 600;">{{ packageName.charAt(0).toUpperCase() + packageName.slice(1) }}</span>
         </p>
         <p>
             <span >Due Amount : </span>
-            <span >00.00</span>
+            <span style="color: aliceblue; font-weight: 600;"> ₹{{ dueAmount }}</span>
         </p>
 
     <div style="margin-top: 1rem; display: flex;">
@@ -21,6 +21,14 @@
 
 <script setup lang="ts">
 import { BellIcon } from 'lucide-vue-next';
+
+defineProps<{
+    userName: string;
+    userEmail: string;
+    packageName: "premium" | "elite" | "basic";
+    dueAmount: number;
+}>();
+
 </script>
 
 <style scoped>

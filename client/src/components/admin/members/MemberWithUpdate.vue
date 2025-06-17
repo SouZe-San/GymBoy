@@ -31,7 +31,7 @@
 
             </div>
             </div>
-            <div style="display: flex; gap: 1rem; align-items: center;"><div class="date">12/21/21</div>
+            <div style="display: flex; gap: 1rem; align-items: center;"><div class="date">{{joinDate  }}</div>
             <span class="badge" :class="packageClasses[packageName]">
               
                 <EditableInputs
@@ -44,11 +44,11 @@
               
             </span>
             <span class="badge" :class="statusClasses[paymentStatus]">
-                               Clear
+                               {{ paymentStatus }}
             </span></div>
         </div>
 
-      <div style="display: flex; align-items: center; justify-content: end; gap:.5rem;">  <button class="button btn update">
+      <div style="display: flex; align-items: center; justify-content: end; gap:.5rem;">  <button class="button btn update" :disabled="!isUpdating" >
           <SquarePen/>  update
         </button>
         <button class="button btn delete"> <CircleX />
@@ -65,9 +65,9 @@ import {PhoneIcon, MailIcon,CircleX ,SquarePen} from 'lucide-vue-next';
 // classes
 
 const packageClasses = {
-  Premium: 'silver',
-  Elite: 'pro',
-  Basic: 'basic',
+  premium: 'silver',
+  elite: 'pro',
+  basic: 'basic',
 };
 
 const statusClasses = {
@@ -75,13 +75,21 @@ const statusClasses = {
   Clear: 'clear',
 };
 
+const {preUserName, preEmail,prePhone, prePackageName, prePaymentStatus ,joinDate} = defineProps<{
+  preUserName: string;
+  preEmail: string;
+  prePhone: string;
+  prePackageName: "premium" | "elite" | "basic";
+  prePaymentStatus: "Pending" | "Clear";
+  joinDate:string;
+}>();
 
-import { ref } from 'vue';
-const userName = ref('Sarah Johnson');
-const email = ref('sarah.j@example.com');
-const phone = ref('984045698345');
-const packageName = ref<"Premium" | "Elite" | "Basic">("Premium");
-const paymentStatus = ref<"Pending"|"Clear">("Clear");
+import { ref, watchEffect } from 'vue';
+const userName = ref(preUserName);
+const email = ref(preEmail);
+const phone = ref(prePhone);
+const packageName = ref<"premium" | "elite" | "basic">(prePackageName);
+const paymentStatus = ref<"Pending"|"Clear">(prePaymentStatus);
 const updateUserName = (newValue: string ) => {
   userName.value = newValue; 
 };
@@ -92,8 +100,25 @@ const updatePhone = (newValue: string ) => {
   phone.value = newValue; 
 };
 const updatePackage = (newValue: string ) => {
-  packageName.value = newValue as "Premium" | "Elite" | "Basic"; 
+  packageName.value = newValue as "premium" | "elite" | "basic"; 
 };
+
+
+const isUpdating = ref(false);
+
+watchEffect(() => {
+  // previous data and new data doesn't match then update true
+
+  isUpdating.value = 
+    userName.value !== preUserName ||
+    email.value !== preEmail ||
+    phone.value !== prePhone ||
+    packageName.value !== prePackageName ||
+    paymentStatus.value !== prePaymentStatus;
+  
+});
+
+
 </script>
 
 <style scoped>
@@ -204,5 +229,10 @@ button{
 .update{
   background-color: white;
   color: black;
+}
+.update:disabled{
+  background-color: #aeaeae8c;
+  color: #111111a3;
+  border: none;
 }
 </style>

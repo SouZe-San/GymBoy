@@ -83,5 +83,6 @@ const notifications: I_Notification[] = [
   font-size: 4rem;
   line-height: 0.8;
   font-weight: bold;
+  color:white;
 }
 </style>
