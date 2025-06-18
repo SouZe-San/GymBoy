@@ -105,8 +105,8 @@ const fakeAnnouncements = [
 ];
 
 //  Repeated Data entry
-
-export const systemFire = async () => {
+console.log("Seeding data...🌱");
+const systemFire = async () => {
   const hasPassword = await Bun.password.hash("password123", {
     algorithm: "bcrypt",
   });
@@ -134,11 +134,12 @@ export const systemFire = async () => {
         ])
         .select();
     });
+    console.log("User data seeded successfully");
   } catch (error) {
     console.error("Error from systemFire: ", error);
   }
 };
-export const announcementFire = async () => {
+const announcementFire = async () => {
   const hasPassword = await Bun.password.hash("password123", {
     algorithm: "bcrypt",
   });
@@ -164,7 +165,12 @@ export const announcementFire = async () => {
         ])
         .select();
     });
+    console.log("Announcement data seeded successfully");
   } catch (error) {
     console.error("Error from systemFire: ", error);
   }
 };
+
+systemFire();
+announcementFire();
+console.log("COMPLETE ...🌱");
