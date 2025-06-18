@@ -13,65 +13,81 @@
 </template>
 
 <script setup lang="ts">
+import { axiosErrorHandler } from "@/api";
 import NotificationList from "@/components/members/NotificationList.vue";
 import type { I_Notification } from "@/components/members/NotificationList.vue";
+import { getAnnouncements } from "@/services/memeber";
+import { onMounted, ref } from "vue";
 
-const notifications: I_Notification[] = [
-  {
-    id: "not_123456",
-    title: "Gym will be closed for maintenance",
-    description: "The gym will be closed on Sunday, May 5th for scheduled maintenance.",
-    date: "2025-04-29",
-    type: "announcement",
-  },
-  {
-    id: "not_1256",
-    title: "Gym will be closed for maintenance",
-    description: "The gym will be closed on Sunday, May 5th for scheduled maintenance.",
-    date: "2025-04-28",
-    type: "announcement",
-  },
-  {
-    id: "not_13454",
-    title: "Your membership fee is due soon",
-    description: "Your monthly membership fee of $49.99 is due on May 15, 2025.",
-    date: "2025-04-25",
+// const notifications: I_Notification[] = [
+//   {
+//     id: "not_123456",
+//     title: "Gym will be closed for maintenance",
+//     description: "The gym will be closed on Sunday, May 5th for scheduled maintenance.",
+//     date: "2025-04-29",
+//     type: "important",
+//   },
+//   {
+//     id: "not_1256",
+//     title: "Gym will be closed for maintenance",
+//     description: "The gym will be closed on Sunday, May 5th for scheduled maintenance.",
+//     date: "2025-04-28",
+//     type: "important",
+//   },
+//   {
+//     id: "not_13454",
+//     title: "Your membership fee is due soon",
+//     description: "Your monthly membership fee of $49.99 is due on May 15, 2025.",
+//     date: "2025-04-25",
 
-    type: "payment",
-  },
-  {
-    id: "not_123458",
-    title: "Yoga class schedule updated",
-    description: "The schedule for yoga classes has been updated for the month of May.",
-    date: "2025-04-20",
+//     type: "payment",
+//   },
+//   {
+//     id: "not_123458",
+//     title: "Yoga class schedule updated",
+//     description: "The schedule for yoga classes has been updated for the month of May.",
+//     date: "2025-04-20",
 
-    type: "event",
-  },
-  {
-    id: "not_123468",
-    title: "Yoga class schedule updated",
-    description: "The schedule for yoga classes has been updated for the month of May.",
-    date: "2025-04-10",
+//     type: "event",
+//   },
+//   {
+//     id: "not_123468",
+//     title: "Yoga class schedule updated",
+//     description: "The schedule for yoga classes has been updated for the month of May.",
+//     date: "2025-04-10",
 
-    type: "event",
-  },
-  {
-    id: "not_123454",
-    title: "Your membership fee is due soon",
-    description: "Your monthly membership fee of $49.99 is due on May 15, 2025.",
-    date: "2025-03-25",
+//     type: "event",
+//   },
+//   {
+//     id: "not_123454",
+//     title: "Your membership fee is due soon",
+//     description: "Your monthly membership fee of $49.99 is due on May 15, 2025.",
+//     date: "2025-03-25",
 
-    type: "payment",
-  },
-  {
-    id: "not_124458",
-    title: "Yoga class schedule updated",
-    description: "The schedule for yoga classes has been updated for the month of May.",
-    date: "2025-03-21",
+//     type: "payment",
+//   },
+//   {
+//     id: "not_124458",
+//     title: "Yoga class schedule updated",
+//     description: "The schedule for yoga classes has been updated for the month of May.",
+//     date: "2025-03-21",
 
-    type: "event",
-  },
-];
+//     type: "event",
+//   },
+// ];
+
+
+const notifications = ref<I_Notification[]>([]);
+
+  onMounted(async () => {
+   try {
+    const {data} = await getAnnouncements()
+    notifications.value = data.notifications;
+   } catch (error) {
+    axiosErrorHandler(error, "Error fetching announcements");
+   }
+  });
+
 </script>
 
 <style scoped>

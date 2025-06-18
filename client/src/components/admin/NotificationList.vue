@@ -28,11 +28,11 @@
           <td class="py-3 pr-4 font-tt-regular">
             <div class="font-medium">{{ announcement.title }}</div>
             <div class="text-sm text-muted-foreground truncate md_hidden" style="max-width: 200px;">
-              {{ new Date(announcement.scheduledDate).toLocaleDateString() }}
+              {{ new Date(announcement.notification_date).toLocaleDateString() }}
             </div>
           </td>
           <td class="py-3 pr-4  md_table-cell font-tt-regular">
-            {{ new Date(announcement.scheduledDate).toLocaleDateString() }}
+            {{ new Date(announcement.notification_date).toLocaleDateString() }}
           </td>
           <td class="py-3 pr-4 md_table-cell">
             <span class="badge" :class="announcement.status === 'scheduled' ? 'bg-gym-accent' : 'bg-draft'">
@@ -63,7 +63,9 @@
 
 import { Trash2, Edit, CirclePlus } from 'lucide-vue-next';
 import CreateAnnouncement from './CreateAnnouncement.vue';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import { axiosErrorHandler } from '@/api';
+import { getAnnouncements } from '@/services/admin';
 
 const openModal = ref(false);
 
@@ -74,8 +76,8 @@ const toggleModal = () => {
 interface Announcement {
   id: string;
   title: string;
-  content: string;
-  scheduledDate: string;
+  message: string;
+  notification_date: string;
   status: 'draft' | 'scheduled' | 'sent';
   type: 'general' | 'important' | 'event';
 }
@@ -89,40 +91,28 @@ interface Announcement {
           return 'default';
       }
     };
-  const announcements: Announcement[] = [
-    {
-      id: 'ann_123456',
-      title: 'Holiday Hours Update',
-      content: 'The gym will have special hours during the upcoming holiday weekend...',
-      scheduledDate: '2025-05-01',
-      status: 'scheduled',
-      type: 'general',
-    },
-    {
-      id: 'ann_123457',
-      title: 'New Equipment Arriving',
-      content: "We're excited to announce that new cardio equipment will be installed...",
-      scheduledDate: '2025-05-10',
-      status: 'draft',
-      type: 'general',
-    },
-    {
-      id: 'ann_123458',
-      title: 'Emergency Closure',
-      content: 'Due to a water main break, the gym will be closed tomorrow for repairs...',
-      scheduledDate: '2025-05-05',
-      status: 'scheduled',
-      type: 'important',
-    },
-    {
-      id: 'ann_123459',
-      title: 'Fitness Challenge Starting Soon',
-      content: 'Join our 30-day fitness challenge starting on May 15th...',
-      scheduledDate: '2025-05-08',
-      status: 'draft',
-      type: 'event',
-    },
-  ];
+
+const announcements = ref<Announcement[]>([]);
+const randomStatus = () => {
+  const statuses = ['draft', 'scheduled'];
+  return statuses[Math.floor(Math.random() * statuses.length)];
+};
+
+  onMounted(async () => {
+   try {
+    const {data} = await getAnnouncements()
+    announcements.value = data.announcements;
+ 
+    announcements.value = announcements.value.map((announcement) => ({
+        ...announcement,
+        status: randomStatus() as Announcement['status'],
+      }));
+   } catch (error) {
+    axiosErrorHandler (error, "Error fetching announcements");
+   }
+  });
+
+
 </script>
 
 <style scoped>

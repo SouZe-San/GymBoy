@@ -6,7 +6,7 @@
         <h3>Naye ho na! Registry Karwa lo</h3>
     </aside>
     <aside class="auth-form">
-        <form >
+        <form @submit="handleSubmit" method="post">
             <span class="shadow"></span>
             <span class="shadow"></span>
 
@@ -21,9 +21,9 @@
           </button>
           <button
           type="button"
-            @click="setUserType('author')"
+            @click="setUserType('admin')"
 class="selection-btn"
-:class="{ 'active': userType === 'author' }"
+:class="{ 'active': userType === 'admin' }"
             >
             
             Admin
@@ -94,17 +94,58 @@ class="selection-btn"
 </template>
 
 <script setup lang="ts">
-import { useTemplateRef, onMounted, ref} from 'vue';
+import {  ref} from 'vue';
 import UserIcon from '../icon/UserIcon.vue';
 import OpenEye from '../icon/OpenEye.vue';
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
 import { PhoneCall,MailIcon } from 'lucide-vue-next';
+import { axiosErrorHandler } from '@/api';
+import { adminRegistration, userRegistration } from '@/services/auth';
 
-const btnRef = useTemplateRef('submit-btn');
-type UserType = 'member' | 'author';
+type UserType = 'member' | 'admin';
 const userType = ref<UserType>('member');
 const setUserType = (type: UserType) => {
   userType.value = type;
+};
+const router = useRouter();
+const handleSubmit = async (event: Event) => {
+  event.preventDefault();
+  const formData = new FormData(event.target as HTMLFormElement);
+  const name = formData.get("name") as string;
+  const email = formData.get("email") as string;
+  const phone = formData.get("phone") as string;
+  const password = formData.get("password") as string;
+
+  // Perform login logic here
+  console.log("Email:", email);
+  console.log("Password:", password);
+
+
+  if (!email || !password) {
+    alert("Please fill in all fields");
+    return;
+  }
+
+  const body = {
+    name,
+    email,
+    phone,
+    password,
+  };
+
+  try {
+    if (userType.value === "admin") {
+      // Logic for admin login
+     await adminRegistration(body) 
+    
+    } else {
+    await userRegistration(body)  
+      
+    }
+    router.push("/auth?type=login");
+  } catch (error) {
+    axiosErrorHandler(error, "While Registration");
+  }
 };
 </script>
 

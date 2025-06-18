@@ -36,21 +36,29 @@
 <script setup lang="ts">
 
 
+import { axiosErrorHandler } from '@/api';
+import { memberCreate } from '@/services/admin';
 import { MailIcon } from 'lucide-vue-next';
 
 defineProps<{
   toggle: () => void;
 }>()
 
-const handleSubmit = (event: Event) => {
+const handleSubmit = async (event: Event) => {
   event.preventDefault();
   const formData = new FormData(event.target as HTMLFormElement);
   const email = formData.get('email') as string;
-  const password = formData.get('subscription') as string;
+  const memberShip = formData.get('subscription') as string;
 
   // Perform login logic here
   console.log('Email:', email);
-  console.log('Password:', password);
+ 
+
+  try {
+    await memberCreate(memberShip,email)
+  } catch (error) {
+    axiosErrorHandler(error,"Error creating member");
+  }
 };
 
 

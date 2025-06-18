@@ -1,7 +1,13 @@
 <template>
         <aside class="hidden md:flex h-screen w-64 flex-col border-r bg-sidebar fixed left-0 top-0 z-20">
       <div class="flex h-16 items-center border-b px-6">
-        <h2 class="text-xl font-bold text-gym-primary">GymBoy</h2>
+           <RouterLink to="/" style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem;">
+             
+             <div class="logo">
+               <img :src="logo" alt="logo">
+              </div>
+              <h2 class="text-xl font-bold text-gym-primary font-tt-regular">GymBoy </h2>
+      </RouterLink>
       </div>
       <div
       style="display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between;">
@@ -35,7 +41,7 @@
             <p class="text-xs text-muted-foreground">{{userType}}</p>
           </div>
         </div>
- <button class="p-1" style=" outline: none; border: none; background: transparent; cursor: pointer;">
+ <button class="p-1" style=" outline: none; border: none; background: transparent; cursor: pointer;" @click="logOut">
             <LogOut/>
           </button>
       </div>
@@ -54,7 +60,7 @@ import {
   Mail,
   LogOut
 } from 'lucide-vue-next';
-
+import logo from '@/assets/images/logo2.png'
 import { computed,watchEffect,  type FunctionalComponent } from 'vue';
 import { RouterLink, useRouter } from 'vue-router';
 const {userType } = defineProps<{
@@ -70,7 +76,14 @@ watchEffect(() => {
   }
 });
 
-
+const logOut = () => {
+  // Implement logout logic here
+  console.log('Logging out...');
+  
+  localStorage.removeItem('userRole'); 
+  
+  router.push('/');
+};
 
 interface NavItem {
   icon: FunctionalComponent;
@@ -136,6 +149,25 @@ interface NavItem {
 
 <style scoped>
 
+.logo{
+  
+            width: 4rem;
+            aspect-ratio: 1;
+            background: var(--color-highLight);
+            border-radius: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: drop-shadow(0 0 30px #000000);
+            overflow: hidden;
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                filter: contrast(1) saturate(4);
+            }
+        }
+
 aside {
    display: flex;
     flex-direction: column; 
@@ -143,6 +175,7 @@ background-color: var(--sidenav-bg);
   border-right: 1px solid #e0e0e038;
   position: fixed;
   backdrop-filter: blur(2rem);
+  padding-top: 1rem;
   left: 0;
   top: 0;
   height: 100vh; 
@@ -163,9 +196,11 @@ aside .flex {
 }
 
 aside h2 {
-  font-size: 1.25rem; 
+  font-size: 1.7rem; 
+  line-height: 1;
   font-weight: bold; 
-  color: var(--gym-primary, #1d4ed8); 
+  color: var(--gym-primary, #dfdfdf); 
+
 }
 
 
@@ -279,6 +314,7 @@ background-color: #00000024;
   aside {
    left: 50%;
     transform: translateX(-50%);
+    padding-top: 0;
     top: unset;
     bottom: 0;
     width: 100%;

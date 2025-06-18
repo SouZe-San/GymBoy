@@ -85,6 +85,8 @@ const {preUserName, preEmail,prePhone, prePackageName, prePaymentStatus ,joinDat
 }>();
 
 import { ref, watchEffect } from 'vue';
+import { memberUpdate } from '@/services/admin';
+import { axiosErrorHandler } from '@/api';
 const userName = ref(preUserName);
 const email = ref(preEmail);
 const phone = ref(prePhone);
@@ -118,6 +120,15 @@ watchEffect(() => {
   
 });
 
+
+const updateDetails = async() =>{
+  if (!isUpdating.value) return;
+  try {
+  await memberUpdate(userName.value, email.value, phone.value, packageName.value);
+  } catch (error) {
+    axiosErrorHandler(error, "Error updating member details");
+  }
+}
 
 </script>
 

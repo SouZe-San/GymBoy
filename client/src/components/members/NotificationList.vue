@@ -6,16 +6,18 @@
       :class="[
         'flex gap-4 p-3 rounded-md transition-colors read-notify',
       
-        notification.type === 'announcement' ? 'border-basic' :
-        notification.type === 'payment' ? 'border-payment' : 'border-event'
+        notification.type === 'event' ? 'border-event' :
+        notification.type === 'payment' ? 'border-payment' : 
+        notification.type === 'important' ? 'border-important' :'border-basic'
       ]"
     >
       <div
         :class="[
           'w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center',
-          notification.type === 'announcement' ? 'basic' :
+          notification.type === 'event' ? 'event' :
           notification.type === 'payment' ? 'alert' :
-          'event'
+          notification.type === 'important' ? 'important' :
+          'basic'
         ]"
       >
         <component
@@ -30,9 +32,9 @@
             {{ notification.title }}
           </h4>
         </div>
-        <p class="text-sm text-muted-foreground">{{ notification.description }}</p>
+        <p class="text-sm text-muted-foreground">{{ notification.message }}</p>
         <p class="text-xs text-muted-foreground">
-          {{ formatDate(notification.date) }}
+          {{ formatDate(notification.notification_date) }}
         </p>
       </div>
     </div>
@@ -41,15 +43,15 @@
 
 <script setup lang="ts">
 
-import { Mail, Bell, Calendar } from 'lucide-vue-next'; // Assuming you have a Vue version of lucide-react
+import { Mail, Bell, Calendar,Siren } from 'lucide-vue-next'; // Assuming you have a Vue version of lucide-react
 
    
 export interface I_Notification {
         id: string;
         title:  string;
-        description: string; 
-        date: string;
-        type: 'announcement' | 'payment' | 'event';
+        message: string; 
+        notification_date: string;
+        type: 'general' | 'important' | 'payment' | 'event';
       }
 
 defineProps<{notifications:I_Notification[]}>()
@@ -58,16 +60,16 @@ defineProps<{notifications:I_Notification[]}>()
       return new Date(date).toLocaleDateString();
     };
 
-    const getIcon = (type :'announcement' | 'payment' | 'event' ) => {
+    const getIcon = (type :'general' | 'important'  |'payment' | 'event' ) => {
       switch (type) {
-        case 'announcement':
-          return Mail;
         case 'payment':
           return Bell;
         case 'event':
           return Calendar;
+        case 'important':
+          return Siren;
         default:
-          return null;
+          return Mail;
       }
     };
 </script>
@@ -122,6 +124,10 @@ defineProps<{notifications:I_Notification[]}>()
 background-color: rgba(30, 113, 14, 0.48);
   color: #47ff47; /* Light red background */
 }
+.important {
+background-color: rgba(113, 14, 34, 0.48);
+  color: #f62a2a; /* Light red background */
+}
 .event {
   background-color: rgba(81, 0, 157, 0.376); /* Light purple background */
 }
@@ -141,6 +147,10 @@ background-color: rgba(30, 113, 14, 0.48);
 .border-event{
     border-left-color: #6d3bf6;
      background-color: rgba(184, 153, 255, 0.2); /* Example payment color */
+}
+.border-important{
+    border-left-color: #f63b3b;
+    background-color: rgba(198, 101, 101, 0.2);
 }
 .border-primary {
     border: 1px solid;
