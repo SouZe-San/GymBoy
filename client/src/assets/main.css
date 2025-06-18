@@ -1,11 +1,6 @@
 @import "./base.css";
 
 @font-face {
-  font-family: "MoonHouse";
-  src: url("fonts/Moonhouse-yE5M.ttf") format("truetype");
-}
-
-@font-face {
   font-family: "CosiAzure";
   src: url("fonts/CosiAzure-Bold.ttf") format("truetype");
 }
@@ -140,9 +135,7 @@ body {
 .font-cozi {
   font-family: "CosiAzure", sans-serif;
 }
-.font-moon {
-  font-family: "MoonHouse", sans-serif;
-}
+
 .font-tt-regular {
   font-family: "TT_hover-regular", sans-serif;
 }

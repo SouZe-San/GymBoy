@@ -44,7 +44,9 @@
             </h1>
             <h4>Your payment history for the last 3 months</h4>
           </div>
-          <button class="button card-link-btn">View All</button>
+          <button class="button card-link-btn">
+            <RouterLink to="/dashboard/receipts" style="color: white"> View All</RouterLink>
+          </button>
         </div>
         <RecentReceiptView />
       </aside>
@@ -57,7 +59,7 @@
             <h4>Manage upcoming announcements for your members</h4>
           </div>
           <button class="button card-link-btn">
-            <RouterLink to="/member/notifications" style="color: white"> View All</RouterLink>
+            <RouterLink to="/dashboard/notifications" style="color: white"> View All</RouterLink>
           </button>
         </div>
         <NotificationList :notifications="notifications" />
@@ -79,24 +81,23 @@ const notifications: I_Notification[] = [
   {
     id: "not_123456",
     title: "Gym will be closed for maintenance",
-    description: "The gym will be closed on Sunday, May 5th for scheduled maintenance.",
-    date: "2025-04-28",
-
-    type: "announcement",
+    message: "The gym will be closed on Sunday, May 5th for scheduled maintenance.",
+    notification_date: "2025-04-28",
+    type: "general",
   },
   {
     id: "not_123457",
     title: "Your membership fee is due soon",
-    description: "Your monthly membership fee of $49.99 is due on May 15, 2025.",
-    date: "2025-04-25",
+    message: "Your monthly membership fee of $49.99 is due on May 15, 2025.",
+    notification_date: "2025-04-25",
 
     type: "payment",
   },
   {
     id: "not_123458",
     title: "Yoga class schedule updated",
-    description: "The schedule for yoga classes has been updated for the month of May.",
-    date: "2025-04-20",
+    message: "The schedule for yoga classes has been updated for the month of May.",
+    notification_date: "2025-04-20",
 
     type: "event",
   },

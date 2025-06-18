@@ -62,6 +62,33 @@ app.patch("/create", async (c: Context) => {
   return c.body("User details updated successfully");
 });
 
+//! Read all members of an admin
+app.get("/members", async (c: Context) => {
+  if (!supabase) {
+    throw new ApiError(400, "Database connection failed");
+  }
+
+  const admin_id = await adminId();
+  // update the user details
+  const { data, error: update_error } = await supabase
+    .from("users")
+    .select("id,name, email, phone,join_date,membership_type,due_amount")
+    .eq("admin_id", admin_id);
+
+  // if not updated throw an error
+  if (update_error) {
+    console.error("Error from user update: ", update_error);
+    throw new ApiError(
+      resStatus.InternalServerError,
+      "Error Throwing from user update at Data update"
+    );
+  }
+
+  // send the response as success
+  c.status(200);
+  return c.json({ message: "User details updated successfully", members: data });
+});
+
 //! Delete Members
 app.delete("/:id", async (c: Context) => {
   // get the user id from the request params
@@ -111,7 +138,7 @@ app.delete("/:id", async (c: Context) => {
 });
 
 //! Update Members
-app.patch("/update:id", async (c: Context) => {
+app.patch("/update/:id", async (c: Context) => {
   const id = c.req.param("id");
   try {
     if (id === undefined) {
@@ -289,7 +316,7 @@ app.patch("/assignFeePackage", async (c: Context) => {
 });
 
 //! Assign Notification for monthly (alert to Member)
-app.post("/sendNotification:id", async (c: Context) => {
+app.post("/sendNotification/:id", async (c: Context) => {
   const id = c.req.param("id");
   try {
     if (id === undefined) {
@@ -313,13 +340,22 @@ app.post("/sendNotification:id", async (c: Context) => {
     }
 
     // get the data from the request body
-    const { message } = await c.req.json();
+    const { amount } = await c.req.json();
 
     const admin_id = await adminId();
     // update the user details
-    const { data, error: update_error } = await supabase
+    const { error: update_error } = await supabase
       .from("notifications")
-      .insert([{ member_id: id, message, notification_date: new Date(), admin_id }])
+      .insert([
+        {
+          title: "Your membership fee is due",
+          member_id: id,
+          message: `Your monthly membership fee of $${amount} is due on ${new Date().getMonth()} 15, 2025.`,
+          type: "payment",
+          notification_date: new Date(),
+          admin_id,
+        },
+      ])
       .select();
 
     // if not updated throw an error
@@ -419,6 +455,34 @@ app.get("/announcements", async (c: Context) => {
     }
     return c.body("Something went Wrong in Server", 500);
   }
+});
+
+//! due Members
+app.get("/due-members", async (c: Context) => {
+  if (!supabase) {
+    throw new ApiError(400, "Database connection failed");
+  }
+
+  const admin_id = await adminId();
+  // update the user details
+  const { data, error: update_error } = await supabase
+    .from("users")
+    .select("id,name, email,membership_type,due_amount")
+    .eq("admin_id", admin_id)
+    .filter("due_amount", "gt", 0);
+
+  // if not updated throw an error
+  if (update_error) {
+    console.error("Error from user update: ", update_error);
+    throw new ApiError(
+      resStatus.InternalServerError,
+      "Error Throwing from user update at Data update"
+    );
+  }
+
+  // send the response as success
+  c.status(200);
+  return c.json({ message: "User details updated successfully", members: data });
 });
 
 // Report export

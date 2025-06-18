@@ -63,7 +63,7 @@ interface EditableInputFieldProps {
   displayAs?: "h1" | "p"| "h4" | "span" | "div";
 }
 
-import { ref, watch, defineProps,withDefaults  } from 'vue';
+import { ref, watch  } from 'vue';
 
 const props = withDefaults(defineProps<EditableInputFieldProps>(), {
   type: 'text',

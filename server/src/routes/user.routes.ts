@@ -42,7 +42,7 @@ app.get("/", async (c: Context) => {
   // check if the user exists
   const { data: users, error } = await supabase
     .from("users")
-    .select("name, email, phone,join_date,role,join_date,membership_type")
+    .select("name, email, phone,join_date,role,membership_type")
     .eq("id", id);
 
   // if not found throw an error

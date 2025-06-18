@@ -7,7 +7,7 @@
              
  <div class="input-box" style="margin: 1rem 0;">
        
-                <input type="email" name="email"
+                <input type="text" name="title"
               placeholder="" />
                 <label>
                 Title 
@@ -17,7 +17,7 @@
         </div> 
  <div class="input-box" style="margin: 1rem 0;">
        
-                <input type="email" name="email"
+                <input type="text" name="description"
               placeholder="" />
                 <label>
                 Description 
@@ -46,23 +46,28 @@
 </template>
 
 <script setup lang="ts">
+import { axiosErrorHandler } from '@/api';
+import { announcementCreate } from '@/services/admin';
 
-
-import { MailIcon } from 'lucide-vue-next';
 
 defineProps<{
   toggle: () => void;
 }>()
 
-const handleSubmit = (event: Event) => {
+const handleSubmit = async  (event: Event) => {
   event.preventDefault();
   const formData = new FormData(event.target as HTMLFormElement);
-  const email = formData.get('email') as string;
-  const password = formData.get('subscription') as string;
+  const title = formData.get('title') as string;
+  const description = formData.get('description') as string;
+  const type = formData.get('type') as string;
 
   // Perform login logic here
-  console.log('Email:', email);
-  console.log('Password:', password);
+try {
+    await announcementCreate(title, description, type);
+} catch (error) {
+    axiosErrorHandler(error, "Error creating announcement");
+}
+
 };
 
 

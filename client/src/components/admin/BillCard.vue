@@ -13,21 +13,33 @@
 
     <div style="margin-top: 1rem; display: flex;">
         <button class="button clear-btn" >Clear</button>
-        <button class="button card-link-btn" style="margin-left: .5rem;">
+        <button class="button card-link-btn" style="margin-left: .5rem;" @click="sentAlert">
             <BellIcon style="width: 17px;"/> Alert</button>
     </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import { axiosErrorHandler } from '@/api';
+import { sendNotification } from '@/services/admin';
 import { BellIcon } from 'lucide-vue-next';
 
-defineProps<{
+const {dueAmount,id} = defineProps<{
+    id: string;
     userName: string;
     userEmail: string;
     packageName: "premium" | "elite" | "basic";
     dueAmount: number;
 }>();
+
+
+const sentAlert = async () =>{
+    try {
+        await sendNotification(dueAmount.toString(),id)
+    } catch (error) {
+        axiosErrorHandler(error, "Error sending alert");
+    }
+}
 
 </script>
 
@@ -48,5 +60,9 @@ button{
     border-color: #bababa47;
     color: #00000057;
     cursor: not-allowed;
+}
+
+button.hover{
+    opacity: .5;
 }
 </style>

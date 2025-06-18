@@ -13,11 +13,11 @@ const isPasswordValid = async (password: string, hashedPassword: string) => {
   }
 };
 
-const generateAccessToken = async (user: any) => {
+const generateAccessToken = async (user: any, role: "admin" | "member" | "guest") => {
   const payload = {
     email: user.email,
     username: user.name,
-    role: user.role,
+    role: role,
     exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 5,
   };
   const secret = process.env.ACCESS_TOKEN_SECRET ?? "SekiAsbe00Na?";

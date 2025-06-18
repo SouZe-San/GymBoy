@@ -48,12 +48,13 @@
             </span></div>
         </div>
 
-      <div style="display: flex; align-items: center; justify-content: end; gap:.5rem;">  <button class="button btn update" :disabled="!isUpdating" >
+      <div style="display: flex; align-items: center; justify-content: end; gap:.5rem;">  <button class="button btn update" :disabled="!isUpdating" @click="updateDetails" >
           <SquarePen/>  update
         </button>
         <button class="button btn delete"> <CircleX />
 delete        </button></div>
     </div>
+
 </template>
 
 <script setup lang="ts">
@@ -75,7 +76,8 @@ const statusClasses = {
   Clear: 'clear',
 };
 
-const {preUserName, preEmail,prePhone, prePackageName, prePaymentStatus ,joinDate} = defineProps<{
+const {id ,preUserName, preEmail,prePhone, prePackageName, prePaymentStatus ,joinDate} = defineProps<{
+  id:string;
   preUserName: string;
   preEmail: string;
   prePhone: string;
@@ -85,6 +87,8 @@ const {preUserName, preEmail,prePhone, prePackageName, prePaymentStatus ,joinDat
 }>();
 
 import { ref, watchEffect } from 'vue';
+import { memberUpdate } from '@/services/admin';
+import { axiosErrorHandler } from '@/api';
 const userName = ref(preUserName);
 const email = ref(preEmail);
 const phone = ref(prePhone);
@@ -118,6 +122,16 @@ watchEffect(() => {
   
 });
 
+
+const updateDetails = async() =>{
+  if (!isUpdating.value) return;
+  try {
+  await memberUpdate(email.value, phone.value,userName.value, packageName.value,id);
+    isUpdating.value = false; // Reset the updating state after successful update
+  } catch (error) {
+    axiosErrorHandler(error, "Error updating member details");
+  }
+}
 
 </script>
 

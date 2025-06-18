@@ -78,9 +78,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref ,onMounted, watchEffect} from 'vue';
-import img from '@/assets/images/landscape/sexy.jpg'
-// import img from '@/assets/images/landscape/yeollow.png'
+import { ref ,onMounted} from 'vue';
+// import img from '@/assets/images/landscape/sexy.jpg'
+import img from '@/assets/images/landscape/yeollow.png'
 import ArrowButton from '../ArrowButton.vue';
 import CookedIcon from '../icon/CookedIcon.vue';
 import OrigamiIcon from '../icon/OrigamiIcon.vue';
@@ -264,6 +264,7 @@ onMounted(() => {
             width: 100%;
             gap: 1rem;
             height: 100%;
+                    padding-bottom: 10px;
 
             .mini-box{
                 width: 30%;
