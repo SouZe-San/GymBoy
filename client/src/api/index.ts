@@ -1,30 +1,33 @@
 import axios from "axios";
+
+const authUrl = import.meta.env.VITE_API_URL + "/auth" || "http://localhost:3000/api/v1/auth";
+const adminUrl = import.meta.env.VITE_API_URL + "/admin" || "http://localhost:3000/api/v1/auth";
+const memberUrl = import.meta.env.VITE_API_URL + "/member" || "http://localhost:3000/api/v1/auth";
+
 export const authApi = axios.create({
-  baseURL: "http://localhost:3000/api/v1/auth",
+  baseURL: authUrl,
   headers: {
     "Content-Type": "application/json",
   },
   withCredentials: true,
 });
 
-console.log("API URL:", import.meta.env.VITE_API_URL);
-
 export const adminApi = axios.create({
-  baseURL: "http://localhost:3000/api/v1/admin",
+  baseURL: adminUrl,
   headers: {
     "Content-Type": "application/json",
   },
   withCredentials: true,
 });
 export const memberApi = axios.create({
-  baseURL: "http://localhost:3000/api/v1/member",
+  baseURL: memberUrl,
   headers: {
     "Content-Type": "application/json",
   },
   withCredentials: true,
 });
 export const userApi = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000/api/v1" + "/user",
+  baseURL: import.meta.env.VITE_API_URL + "/user" || "http://localhost:3000/api/v1/user",
   headers: {
     "Content-Type": "application/json",
   },
