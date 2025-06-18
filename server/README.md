@@ -46,6 +46,12 @@ A lightweight, high-performance backend built with **[Hono.js](https://hono.dev/
 │   │   ├── user.routes.ts # member-specific routes
 │   │   └── members.routes.ts # gym-member management routes
 │   │
+│   ├── utils/
+│   │   ├── ApiError.ts
+│   │   ├── login.utils.ts
+│   │   ├── responseStatus.ts
+│   │   └── seed.ts
+│   │
 │   └── index.ts
 │
 ├── bun.lockb
@@ -86,6 +92,12 @@ JWT_SECRET=your-jwt-secret
 
 ```bash
 bun dev
+```
+
+### 5. Seeding Fake data in DB \(Optional\)
+
+```bash
+bun db:seed
 ```
 
 open http://localhost:3000
