@@ -72,7 +72,7 @@ app.get("/members", async (c: Context) => {
   // update the user details
   const { data, error: update_error } = await supabase
     .from("users")
-    .select("name, email, phone,join_date,membership_type,due_amount")
+    .select("id,name, email, phone,join_date,membership_type,due_amount")
     .eq("admin_id", admin_id);
 
   // if not updated throw an error
@@ -138,7 +138,7 @@ app.delete("/:id", async (c: Context) => {
 });
 
 //! Update Members
-app.patch("/update:id", async (c: Context) => {
+app.patch("/update/:id", async (c: Context) => {
   const id = c.req.param("id");
   try {
     if (id === undefined) {
@@ -316,7 +316,7 @@ app.patch("/assignFeePackage", async (c: Context) => {
 });
 
 //! Assign Notification for monthly (alert to Member)
-app.post("/sendNotification:id", async (c: Context) => {
+app.post("/sendNotification/:id", async (c: Context) => {
   const id = c.req.param("id");
   try {
     if (id === undefined) {
@@ -455,6 +455,34 @@ app.get("/announcements", async (c: Context) => {
     }
     return c.body("Something went Wrong in Server", 500);
   }
+});
+
+//! due Members
+app.get("/due-members", async (c: Context) => {
+  if (!supabase) {
+    throw new ApiError(400, "Database connection failed");
+  }
+
+  const admin_id = await adminId();
+  // update the user details
+  const { data, error: update_error } = await supabase
+    .from("users")
+    .select("id,name, email,membership_type,due_amount")
+    .eq("admin_id", admin_id)
+    .filter("due_amount", "gt", 0);
+
+  // if not updated throw an error
+  if (update_error) {
+    console.error("Error from user update: ", update_error);
+    throw new ApiError(
+      resStatus.InternalServerError,
+      "Error Throwing from user update at Data update"
+    );
+  }
+
+  // send the response as success
+  c.status(200);
+  return c.json({ message: "User details updated successfully", members: data });
 });
 
 // Report export
