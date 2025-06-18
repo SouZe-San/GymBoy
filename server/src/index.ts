@@ -9,10 +9,6 @@ import memberRoutes from "./routes/member.routes";
 import adminRoutes from "./routes/admin.routes";
 import authRoutes from "./routes/auth.routes";
 
-//middleware
-import authMiddleware from "./middlewares/auth.middleware";
-import { announcementFire, systemFire } from "./utils/tempData";
-
 // main app
 const app = new Hono().basePath("/api/v1");
 
@@ -35,16 +31,6 @@ supabaseConnection().then(() => {
 
 // Base route
 app.get("/", async (c) => {
-  return c.text("System Urrra denge !!! 🚀");
-});
-
-// Fake routes for testing purposes
-app.get("/fake/members", async (c) => {
-  systemFire();
-  return c.text("System Urrra denge !!! 🚀");
-});
-app.get("/fake/ann", async (c) => {
-  announcementFire();
   return c.text("System Urrra denge !!! 🚀");
 });
 

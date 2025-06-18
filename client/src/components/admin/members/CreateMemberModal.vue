@@ -50,10 +50,6 @@ const handleSubmit = async (event: Event) => {
   const email = formData.get('email') as string;
   const memberShip = formData.get('subscription') as string;
 
-  // Perform login logic here
-  console.log('Email:', email);
- 
-
   try {
     await memberCreate(memberShip,email)
   } catch (error) {

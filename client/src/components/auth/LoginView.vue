@@ -82,11 +82,6 @@ const handleSubmit = async (event: Event) => {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
 
-  // Perform login logic here
-  console.log("Email:", email);
-  console.log("Password:", password);
-  console.log("User Type:", userType.value);
-
   if (!email || !password) {
     alert("Please fill in all fields");
     return;

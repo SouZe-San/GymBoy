@@ -159,10 +159,6 @@ const membershipExpiry = ref('May 15, 2025')
 
 // Methods
 const toggleEditMode = () => {
-  if (isEditing.value) {
-    // Save changes logic here
-    console.log('Saving changes...', userInfo.value)
-  }
   isEditing.value = !isEditing.value
 }
 </script>

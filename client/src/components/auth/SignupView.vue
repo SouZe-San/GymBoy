@@ -116,11 +116,6 @@ const handleSubmit = async (event: Event) => {
   const phone = formData.get("phone") as string;
   const password = formData.get("password") as string;
 
-  // Perform login logic here
-  console.log("Email:", email);
-  console.log("Password:", password);
-
-
   if (!email || !password) {
     alert("Please fill in all fields");
     return;

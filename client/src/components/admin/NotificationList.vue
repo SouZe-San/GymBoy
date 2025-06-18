@@ -158,7 +158,7 @@ const randomStatus = () => {
 
 
 .pb-3 {
-  padding-bottom: 1rem; /* 12px */
+  padding-bottom: 1rem; 
 }
 
 .font-medium {
@@ -166,12 +166,12 @@ const randomStatus = () => {
 }
 
 .py-3 {
-  padding-top: 1rem; /* 12px */
-  padding-bottom: 1rem; /* 12px */
+  padding-top: 1rem; 
+  padding-bottom: 1rem; 
 }
 
 .pr-4 {
-  padding-right: 1rem; /* 16px */
+  padding-right: 1rem; 
 }
 
 .hidden {
@@ -179,15 +179,15 @@ const randomStatus = () => {
 }
 
 .md\:table-cell {
-  display: table-cell; /* This will be applied at medium screen sizes and above */
+  display: table-cell; 
 }
 
 .text-sm {
-  font-size: 0.875rem; /* 14px */
+  font-size: 0.875rem; 
 }
 
 .text-muted-foreground {
-  color: #6b7280; /* Gray */
+  color: #6b7280;
 }
 
 .truncate {
@@ -208,7 +208,7 @@ const randomStatus = () => {
 }
 
 .bg-red-50 {
-  background-color: #fee2e2; /* Light red */
+  background-color: #fee2e2; 
 }
 
 .bg-purple-50 {
