@@ -5,7 +5,7 @@ import { resStatus } from "../utils/responseStatus";
 import { supabase } from "../database";
 import { generateAccessToken, isPasswordValid } from "../utils/login.utils";
 import { setSignedCookie } from "hono/cookie";
-import { use } from "hono/jsx";
+
 const app = new Hono();
 
 const cookieOptions: {
@@ -126,7 +126,7 @@ app.post("/admin/login", async (c: Context) => {
     return c.body("Invalid Password", 400);
   }
 
-  const accessToken = await generateAccessToken(user);
+  const accessToken = await generateAccessToken(user, "admin");
 
   setSignedCookie(
     c,
@@ -221,7 +221,7 @@ app.post("/registration", async (c: Context) => {
 app.post("/login", async (c: Context) => {
   // get the data from the request body
 
-  const { email, password, role } = await c.req.json();
+  const { email, password } = await c.req.json();
 
   // check if any of the required fields are empty
   if ([email, password].some((field) => field?.trim() === "")) {
@@ -251,7 +251,7 @@ app.post("/login", async (c: Context) => {
     return c.body("Invalid Password", 400);
   }
 
-  const accessToken = await generateAccessToken(user);
+  const accessToken = await generateAccessToken(user, user.role);
 
   setSignedCookie(
     c,
