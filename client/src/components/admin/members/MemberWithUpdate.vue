@@ -48,12 +48,13 @@
             </span></div>
         </div>
 
-      <div style="display: flex; align-items: center; justify-content: end; gap:.5rem;">  <button class="button btn update" :disabled="!isUpdating" >
+      <div style="display: flex; align-items: center; justify-content: end; gap:.5rem;">  <button class="button btn update" :disabled="!isUpdating" @click="updateDetails" >
           <SquarePen/>  update
         </button>
         <button class="button btn delete"> <CircleX />
 delete        </button></div>
     </div>
+
 </template>
 
 <script setup lang="ts">
@@ -75,7 +76,8 @@ const statusClasses = {
   Clear: 'clear',
 };
 
-const {preUserName, preEmail,prePhone, prePackageName, prePaymentStatus ,joinDate} = defineProps<{
+const {id ,preUserName, preEmail,prePhone, prePackageName, prePaymentStatus ,joinDate} = defineProps<{
+  id:string;
   preUserName: string;
   preEmail: string;
   prePhone: string;
@@ -124,7 +126,8 @@ watchEffect(() => {
 const updateDetails = async() =>{
   if (!isUpdating.value) return;
   try {
-  await memberUpdate(userName.value, email.value, phone.value, packageName.value);
+  await memberUpdate(email.value, phone.value,userName.value, packageName.value,id);
+    isUpdating.value = false; // Reset the updating state after successful update
   } catch (error) {
     axiosErrorHandler(error, "Error updating member details");
   }

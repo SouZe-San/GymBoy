@@ -6,13 +6,16 @@ export const memberUpdate = async (
   email: string,
   phone: string,
   name: string,
-  package_name: string
-) => adminApi.post("/create", { email, phone, name, package_name });
+  package_name: string,
+  id: string
+) => adminApi.patch(`/update/${id}`, { email, phone, name, package_name });
 
 export const announcementCreate = async (title: string, message: string, type: string) =>
-  adminApi.post("/create", { title, message, type });
+  adminApi.post("/announcement/create", { title, message, type });
 
-export const sendNotification = async (amount: string) => adminApi.post("/create", { amount });
+export const sendNotification = async (amount: string, id: string) =>
+  adminApi.post(`/sendNotification/${id}`, { amount });
 
 export const getMembers = async () => adminApi.get("/members");
 export const getAnnouncements = async () => adminApi.get("/announcements");
+export const getDueMembers = async () => adminApi.get("/due-members");

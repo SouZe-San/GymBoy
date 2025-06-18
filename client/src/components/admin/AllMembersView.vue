@@ -17,6 +17,7 @@
   
         <MemberWithUpdate
          v-for="(member, index) in allUsers"
+         :id="member.id"
          :preEmail="member.email" 
          :prePackageName="member.membership_type"
          :prePaymentStatus="member.paymentStatus"
@@ -121,6 +122,7 @@ const toggleModal = () => {
 // ]
 
 const allUsers = ref<{
+    id:string
    name: string;
   email: string;
   phone: string;

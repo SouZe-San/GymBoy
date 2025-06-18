@@ -24,7 +24,8 @@ import { axiosErrorHandler } from '@/api';
 import { sendNotification } from '@/services/admin';
 import { BellIcon } from 'lucide-vue-next';
 
-const {dueAmount} = defineProps<{
+const {dueAmount,id} = defineProps<{
+    id: string;
     userName: string;
     userEmail: string;
     packageName: "premium" | "elite" | "basic";
@@ -34,7 +35,7 @@ const {dueAmount} = defineProps<{
 
 const sentAlert = async () =>{
     try {
-        await sendNotification(dueAmount.toString())
+        await sendNotification(dueAmount.toString(),id)
     } catch (error) {
         axiosErrorHandler(error, "Error sending alert");
     }

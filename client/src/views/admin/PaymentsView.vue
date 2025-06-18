@@ -12,60 +12,47 @@
          
         </div>
 
-
-
         <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
 
         <BillCard 
-        v-for="(bill, index) in mokeData"
+        v-for="(bill, index) in allUsers"
         :key="index.toString()"
-        :userName="bill.userName"
-        :userEmail="bill.userEmail"
-        :packageName="bill.packageName as 'premium' | 'elite' | 'basic'"
-        :dueAmount="bill.dueAmount"
-
+        :userName="bill.name"
+        :userEmail="bill.email"
+        :dueAmount="bill.due_amount"
+        :packageName="bill.membership_type"
+        :id="bill.id"
         />
         </div>
     </section>
 </template>
 
 <script setup lang="ts">
+import { axiosErrorHandler } from '@/api';
 import BillCard from '@/components/admin/BillCard.vue';
+import { getDueMembers } from '@/services/admin';
+import { onMounted, ref } from 'vue';
 
+ const allUsers = ref<{
+    id:string
+   name: string;
+  email: string;
+  due_amount:number;
+  membership_type: "premium" | "elite" | "basic";
+  
+}[]>([]);
+  
 
-const mokeData = [
-{
-    "userName": "Alice Smith",
-    "userEmail": "alice.smith@example.com",
-    "packageName": "premium",
-    "dueAmount": 150.75
-},{
-    "userName": "Bob Johnson",
-    "userEmail": "bob.johnson@example.com",
-    "packageName": "elite",
-    "dueAmount": 200.00
-}
-,{
-    "userName": "Charlie Brown",
-    "userEmail": "charlie.brown@example.com",
-    "packageName": "basic",
-    "dueAmount": 75.50
-},{
-    "userName": "Diana Prince",
-    "userEmail": "diana.prince@example.com",
-    "packageName": "premium",
-    "dueAmount": 120.25
-},{
-    "userName": "Ethan Hunt",
-    "userEmail": "ethan.hunt@example.com",
-    "packageName": "elite",
-    "dueAmount": 250.00
-}
+  onMounted(async () => {
+   try {
+    const {data} = await getDueMembers()
+ 
+    allUsers.value = data.members;
+   } catch (error) {
+    axiosErrorHandler(error, "Error fetching members In BILL");
+   }
+  });
 
-
-
-
-]
 
 </script>
 
